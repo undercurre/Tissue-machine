@@ -1,0 +1,86 @@
+<!-- 顶部 不同机型：1px={{rate}}rpx，rpx可让系统自适应-->
+<view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+	<view class="status" style="height:{{statusHeight}}px"></view>
+	<view class="comment" style="height: {{commentHeight}}px">
+		<view class="FlexBox"
+			style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+			<view class="backButton" bindtap="backIndex">
+				<image src="/static/images/backButton.svg" class="backButtonImage"></image>
+			</view>
+			<view class="mainTitle" style="margin-left: {{textLeft}}px;"></view>
+		</view>
+	</view>
+</view>
+<!-- 表单 -->
+<view class="form">
+	<view class="tips">
+		<view>亲,请简单填写一下您的意向并留下联系方式</view>
+		<view>
+			我们的客服会在24小时内联系您,请留意.
+		</view>
+	</view>
+	<view style="height:fit-content">
+	<form bindsubmit="formSubmit">
+		<view class="name">
+			<view class="left">
+				<text class="mark">*</text> <text class="tip">您的姓名</text>
+			</view>
+			<input class="nameInput" name="name" placeholder="请输入姓名" type="text" />
+		</view>
+		<view class="line"></view>
+		<view class="phone">
+			<view class="left">
+				<text class="mark">*</text> <text class="tip">联系方式</text>
+			</view>
+			<input class="nameInput" name="phone" placeholder="请输入手机号码" type="number" />
+		</view>
+		<view class="line"></view>
+		<view class="unit">
+			<view>
+				<text class="mark">*</text> <text class="tip">单位性质（单选）</text>
+			</view>
+			<view style="margin-top:24rpx">
+				<radio-group bindchange="radioValue" name="radio">
+					<view wx:for="{{radioValue}}" class="unitType">
+						<radio value="{{item.value}}"></radio>
+						<text>{{item.name}}</text>
+					</view>
+				</radio-group>
+				<view wx:if="{{showUnitName === 1}}" class="unitName">
+					<text decode="{{true}}">&nbsp;单位名称</text>
+					<input type="text" name="unitName" placeholder="请输入企业/商家名称"/>
+				</view>
+			</view>
+		</view>
+		<view class="line" style="margin-top:28rpx"></view>
+		<view class="adType">
+			<view>
+				<text class="mark">*</text> <text class="tip">广告类型（多选）</text>
+			</view>
+			<checkbox-group bindchange="checkboxValue" name="checkbox">
+			<view wx:for="{{checkboxValue}}" style="margin: 20rpx 0;" class="unitType">
+				<checkbox value="{{item.id}}"></checkbox>
+				<text>{{item.name}}</text>
+			</view>
+		</checkbox-group>
+		</view>
+		<view class="btnBox">
+    <button class="submitBtn" formType="submit">提交意向</button>
+		</view>
+	</form>
+</view>
+</view>
+<!-- 弹窗 -->
+<view class="cover" wx:if="{{showPop === 1}}">
+  <view class="Pop">
+	 <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/submitsuccess3x.png" mode="scaleToFill"
+	 class="img"
+	 ></image>
+	 <view class="mark">提交成功</view>
+	 <view class="txt">亲您的意向已提交,客服会在24小时</view>
+	 <view class="txt">内联系您,请留意</view>
+	 <view class="comfirmBtn" bindtap="backIndex">
+		 <text>确认</text>
+	 </view>
+	</view>
+</view>

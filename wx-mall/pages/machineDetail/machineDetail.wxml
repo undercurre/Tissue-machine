@@ -1,0 +1,74 @@
+<view class="top">
+  <image class="machine_detail_img" src="{{machineInfo.machineImage}}"></image>
+  <view class="machine_detail">
+    <view class="machine_detail_con">
+      <view class="machine_detail_top">
+        <image class="machine_image"
+          src="{{machineInfo.isShowLogo==1? machineInfo.machineLogo : machineInfo.machineImage}}"></image>
+        <view class="machine_name">{{machineInfo.name}}</view>
+
+        <view class="machine_scan" wx:if="{{machineInfo.status == 1}}" bindtap="scan">
+          <image class="machine_scan_image"
+            src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/cardScan3xZpq.png"></image>
+          <view class="machine_scan_text">扫一扫</view>
+        </view>
+
+        <view class="machine_error" wx:else>
+          设备维护中
+        </view>
+      </view>
+      <!-- 工作时间、工作地点、导航按钮 -->
+      <view class="machine_detail_center">
+        <view class="machine_detail_center_left">
+          <view class="machine_worktime">
+            <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/timeZpq.png"></image>
+            <view>{{machineInfo.workTime}}</view>
+          </view>
+          <view class="machine_address">
+            <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/addressZpq.png" mode="aspectFit"></image>
+            <view>{{machineInfo.address}}</view>
+          </view>
+        </view>
+        <view class="machine_navigation" bindtap="toHere" data-id="{{machineInfo}}">
+          <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/navigationZpq3x.png"></image>
+          <view>导航</view>
+        </view>
+      </view>
+      <!-- 设备剩余xx包纸巾、问题反馈 -->
+      <view class="machine_detail_bottom" data-id="{{machineInfo.id}}">
+        <view class="BigBoxbwt">
+          <view wx:if="{{machineInfo.status == 1}}" class="machine_stock_con">
+            <view class="machine_stock">
+              <view>
+                设备剩余
+              </view>
+            </view>
+            <view class="red">
+              {{machineInfo.tissueNumber}}
+            </view>
+            <view class="machine_stock">
+              <view>
+                包纸巾
+              </view>
+            </view>
+          </view>
+          <view class="erro" wx:else></view>
+          <view class="machine_feedback_title" bindtap="toFeedBack">
+            <view>
+              问题反馈
+            </view>
+            <view>
+              <image class="machine_arrow Image"
+                src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Forward.png">
+              </image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="bottom" wx:if="{{hasAd}}">
+  <image src="{{patch.imageUrl}}"></image>
+</view>

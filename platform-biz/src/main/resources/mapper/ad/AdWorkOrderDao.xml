@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdWorkOrderDao">
+
+    <sql id="selectSql">
+        SELECT
+        DISTINCT
+        T.ID,
+        T.WORKER_ID,
+        T.WORK_TYPE,
+        T.STATUS,
+        T.CREATE_TIME,
+        T.MACHINE_ID,
+        T.ACCEPT_TIME,
+        T.FINISH_TIME,
+        T.PARENT_ID,
+        T.ORDER_NUM,
+        T.DES,
+        T.IS_END,
+        T.CREATOR_ID,
+        T.REMARK,
+        T.START_TIME,
+        T.DEADLINE_TIME,
+        T.IS_AVAIL,
+        T.ADDRESS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.NAME,
+        T.REASON,
+        M.NAME AS MACHINE_NAME,
+        U.REAL_NAME AS WORKER_NAME
+        FROM AD_WORK_ORDER T
+        LEFT JOIN AD_TISSUE_MACHINE M ON M.ID = T.MACHINE_ID
+        LEFT JOIN SYS_USER U ON U.USER_ID = T.WORKER_ID
+        LEFT JOIN SYS_USER_DEPARTMENT D ON D.USER_ID = U.USER_ID
+        WHERE 1=1 AND D.DEPARTMENT_ID IN (SELECT DEPARTMENT_ID FROM SYS_USER_DEPARTMENT WHERE USER_ID = #{params.userId})
+        <if test="params.userId != null and params.userId.trim() != '' and params.isWorkerManager != 1">
+            AND T.WORKER_ID = #{params.userId}
+        </if>
+        <if test="params.workType != null and params.workType.trim() != ''">
+            AND T.WORK_TYPE = #{params.workType}
+        </if>
+        <if test="params.status != null and params.status.trim() != ''">
+            AND T.STATUS = #{params.status}
+        </if>
+        <if test="params.isEnd != null and params.isEnd.trim() != ''">
+            AND T.IS_END = #{params.isEnd}
+        </if>
+        <if test="params.isWorker == 1">
+            AND T.WORKER_ID = #{params.userId}
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </sql>
+
+    <select id="selectAdWorkOrderPage" resultType="com.platform.modules.ad.entity.AdWorkOrderEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="AppSelectAdWorkOrderPage" resultType="com.platform.modules.ad.entity.AdWorkOrderEntity">
+        SELECT
+        T.ID,
+        T.WORKER_ID,
+        T.WORK_TYPE,
+        T.STATUS,
+        T.CREATE_TIME,
+        T.START_TIME,
+        T.NAME,
+        T.DEADLINE_TIME,
+        U.REAL_NAME AS WORKER_NAME
+        FROM AD_WORK_ORDER T
+        LEFT JOIN SYS_USER U ON U.USER_ID = T.WORKER_ID
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        <if test="params.isCreator == 1">
+            AND T.CREATOR_ID = #{params.userId}
+        </if>
+        <if test="params.isWorker == 1">
+            AND T.WORKER_ID = #{params.userId}
+        </if>
+        <if test="params.startTime != null and params.deadlineTime != null and params.startTime.trim() != '' and params.deadlineTime.trim() != ''">
+            AND T.START_TIME <![CDATA[>=]]> #{params.startTime}
+            AND T.DEADLINE_TIME <![CDATA[<=]]> #{params.deadlineTime}
+        </if>
+        <if test="params.status != null and params.status.trim() != ''">
+            AND T.STATUS = #{params.status}
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdWorkOrderEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="getDetailById" parameterType="String" resultType="com.platform.modules.ad.entity.AdWorkOrderEntity">
+        SELECT
+        T.ID,
+        T.WORKER_ID,
+        T.WORK_TYPE,
+        T.STATUS,
+        T.CREATE_TIME,
+        T.MACHINE_ID,
+        T.ACCEPT_TIME,
+        T.FINISH_TIME,
+        T.DES,
+        T.IS_END,
+        T.CREATOR_ID,
+        T.REMARK,
+        T.START_TIME,
+        T.DEADLINE_TIME,
+        T.IS_AVAIL,
+        T.ADDRESS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.NAME,
+        T.REASON,
+        M.NAME AS MACHINE_NAME,
+        U.REAL_NAME AS WORKER_NAME
+        FROM AD_WORK_ORDER T
+        LEFT JOIN AD_TISSUE_MACHINE M ON M.ID = T.MACHINE_ID
+        LEFT JOIN SYS_USER U ON U.USER_ID = T.WORKER_ID
+        WHERE T.ID = #{id}
+    </select>
+
+    <select id="getSonNum" parameterType="String" resultType="Integer">
+        SELECT
+        COUNT(*)
+        FROM AD_WORK_ORDER T
+        WHERE PARENT_ID = #{parentId}
+        GROUP BY PARENT_ID
+    </select>
+
+    <select id="getSonList" parameterType="String" resultType="com.platform.modules.ad.entity.AdWorkOrderEntity">
+        SELECT
+        T.ID,
+        T.ORDER_NUM,
+        T.DES,
+        T.REMARK,
+        T.STATUS,
+        T.ADDRESS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.WORKER_ID,
+        U.REAL_NAME AS WORKER_NAME
+        FROM AD_WORK_ORDER T
+        LEFT JOIN SYS_USER U ON U.USER_ID = T.WORKER_ID
+        WHERE T.PARENT_ID = #{parentId}
+        ORDER BY T.ORDER_NUM
+    </select>
+
+    <select id="queryMyWorkOrder" resultType="com.platform.modules.ad.entity.AdWorkOrderEntity">
+        SELECT
+        T.ID,
+        T.WORKER_ID,
+        T.WORK_TYPE,
+        T.STATUS,
+        T.CREATE_TIME,
+        T.MACHINE_ID,
+        T.ACCEPT_TIME,
+        T.FINISH_TIME,
+        T.PARENT_ID,
+        T.ORDER_NUM,
+        T.DES,
+        T.IS_END,
+        T.CREATOR_ID,
+        T.REMARK,
+        T.START_TIME,
+        T.DEADLINE_TIME,
+        T.IS_AVAIL,
+        T.ADDRESS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.NAME,
+        T.REASON,
+        M.NAME AS MACHINE_NAME,
+        U.REAL_NAME AS WORKER_NAME
+        FROM AD_WORK_ORDER T
+        LEFT JOIN AD_TISSUE_MACHINE M ON M.ID = T.MACHINE_ID
+        LEFT JOIN SYS_USER U ON U.USER_ID = T.WORKER_ID
+        WHERE 1=1
+        <if test="params.workType != null and params.workType.trim() != ''">
+            AND T.WORK_TYPE = #{params.workType}
+        </if>
+        <if test="params.status != null and params.status.trim() != ''">
+            AND T.STATUS = #{params.status}
+        </if>
+        <if test="params.isEnd != null and params.isEnd.trim() != ''">
+            AND T.IS_END = #{params.isEnd}
+        </if>
+<!--        <if test="params.isWorker == 1">-->
+<!--            AND T.STATUS != 4-->
+<!--        </if>-->
+        <if test="params.isCreator == 1 or params.isWorker == 1">
+            AND (
+                <if test="params.isWorker == 1">
+                    (T.WORKER_ID = #{params.userId} AND (T.IS_DELETED = 0 OR T.IS_DELETED = 2))
+                </if>
+                <if test="params.isCreator == 1">
+                    OR (T.CREATOR_ID = #{params.userId} AND (T.IS_DELETED = 0 OR T.IS_DELETED = 1))
+                </if>
+                )
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+</mapper>

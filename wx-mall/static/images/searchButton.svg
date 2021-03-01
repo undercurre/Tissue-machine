@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="14.999" height="14.999" viewBox="0 0 14.999 14.999">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #082f40;
+      }
+    </style>
+  </defs>
+  <g id="组_58" data-name="组 58" transform="translate(-329 -495)">
+    <path id="Fill_200" data-name="Fill 200" class="cls-1" d="M0,.508a1.734,1.734,0,0,1,2.45,0L4.164,2.214A.865.865,0,0,1,2.943,3.44L0,.508" transform="translate(339.58 506.306)"/>
+    <path id="Fill_201" data-name="Fill 201" class="cls-1" d="M6.058,12.117A6.058,6.058,0,0,1,1.774,1.774a6.058,6.058,0,1,1,8.568,8.568A6.019,6.019,0,0,1,6.058,12.117Zm0-10.386A4.327,4.327,0,1,0,9.118,3,4.3,4.3,0,0,0,6.058,1.731Z" transform="translate(329 495)"/>
+  </g>
+</svg>

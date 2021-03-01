@@ -1,0 +1,4 @@
+<view>
+  <view wx:if="{{interestSurvey == 0}}">兴趣调查</view>
+  <button bindtap="submitOrder" wv:if="{{userLevelId == 1}}">参加活动</button>
+</view>

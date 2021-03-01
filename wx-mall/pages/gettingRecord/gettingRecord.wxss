@@ -1,0 +1,60 @@
+/* pages/gettingRecord/gettingRecord.wxss */
+Page {
+  background-color: #F4F4F4;
+}
+
+.record_item {
+  width: 690rpx;
+  height: 140rpx;
+  margin: 30rpx;
+  padding: 24rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.record_item .record_top {
+  display: flex;
+  justify-content: space-between;
+  height: 42rpx;
+  line-height: 42rpx;
+  margin: 0 0 24rpx 0;
+}
+
+.record_item .record_top .record_num {
+  font-size: 27rpx;
+}
+
+.record_item .record_top .record_count {
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.record_item .record_bottom {
+  display: flex;
+  justify-content: space-between;
+  height: 34rpx;
+  line-height: 34rpx;
+  margin: 24rpx 0;
+}
+
+.record_item .record_bottom .record_time {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.record_item .record_bottom .record_mode {
+  font-size: 24rpx;
+  color: #FF9700;
+}
+
+.blankContentImage {
+  width: 480rpx;
+  height: 270rpx;
+}
+/* 消息为空 */
+.blankContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50%;
+}

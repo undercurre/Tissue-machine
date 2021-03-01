@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdMachineVoiceDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.CONTENT,
+        T.CREATE_TIME,
+        T.VALID_TIME,
+        T.MACHINE_ID,
+        T.SUPERIORID,
+        M.NAME AS MACHINE_NAME,
+        M.AGENT_ID
+        FROM AD_MACHINE_VOICE T
+        LEFT JOIN AD_TISSUE_MACHINE M ON T.MACHINE_ID = M.ID
+        WHERE 1=1
+        <if test="params.content != null and params.content.trim() != ''">
+            AND T.CONTENT LIKE '%${params.content}%'
+        </if>
+        AND T.VALID_TIME <![CDATA[>=]]> #{params.date}
+        AND T.SUPERIORID IS NULL
+        ORDER BY T.CREATE_TIME DESC
+    </sql>
+
+    <select id="selectAdMachineVoicePage" resultType="com.platform.modules.ad.entity.AdMachineVoiceEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdMachineVoiceEntity">
+        <include refid="selectSql"/>
+    </select>
+    <select id="queryById" resultType="com.platform.modules.ad.entity.AdMachineVoiceEntity">
+        SELECT
+        T.ID,
+        V.CONTENT,
+        T.CREATE_TIME,
+        T.VALID_TIME,
+        T.MACHINE_ID,
+        T.SUPERIORID,
+        M.NAME AS MACHINE_NAME,
+        M.AGENT_ID
+        FROM AD_MACHINE_VOICE T
+        LEFT JOIN AD_TISSUE_MACHINE M ON T.MACHINE_ID = M.ID
+		LEFT JOIN AD_MACHINE_VOICE V ON T.SUPERIORID = V.ID
+        WHERE 1=1 AND T.ID = #{id}
+    </select>
+
+    <select id="queryValidList" resultType="java.lang.String">
+        SELECT
+        V.MACHINE_ID
+        FROM AD_MACHINE_VOICE V WHERE V.VALID_TIME > now() AND V.MACHINE_ID IS NOT NULL;
+    </select>
+</mapper>

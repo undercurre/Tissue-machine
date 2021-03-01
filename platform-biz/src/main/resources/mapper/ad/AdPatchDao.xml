@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdPatchDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.IMAGE_URL,
+        T.CREATE_TIME,
+        T.AVAIL,
+        T.TYPE
+        FROM AD_PATCH T
+        WHERE 1=1
+        <if test="params.type != null and params.type.trim() != ''">
+            AND T.TYPE = #{params.type}
+        </if>
+        <if test="params.avail != null and params.avail.trim() != ''">
+            AND T.AVAIL = #{params.avail}
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </sql>
+
+    <select id="selectAdPatchPage" resultType="com.platform.modules.ad.entity.AdPatchEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdPatchEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

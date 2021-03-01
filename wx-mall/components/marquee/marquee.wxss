@@ -1,0 +1,20 @@
+/* components/marquee.wxss */
+.marquee_container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.marquee_text {
+  position: absolute;
+  white-space: nowrap;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 0;
+  z-index: 999999;
+}

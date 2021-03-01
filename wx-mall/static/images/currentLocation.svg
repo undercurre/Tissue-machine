@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="30.5" viewBox="0 0 20 30.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6f6f6f;
+        stroke: rgba(0,0,0,0);
+      }
+
+      .cls-2 {
+        fill: #ff6c00;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="用户位置" transform="translate(-66.708 -483.179)">
+    <g id="_20._Pin" data-name="20. Pin" transform="translate(66.708 483.179)">
+      <path id="路径_15" data-name="路径 15" class="cls-1" d="M6.462,0c3.569,0,6.462.593,6.462,1.326S10.031,2.651,6.462,2.651,0,2.058,0,1.326,2.893,0,6.462,0Z" transform="translate(3.296 27.349)"/>
+      <path id="Path" class="cls-2" d="M0,10.2A9.866,9.866,0,0,1,10,0,9.866,9.866,0,0,1,20,10.2,19.607,19.607,0,0,1,17.167,19.5a68.482,68.482,0,0,1-5.778,7.667L9.844,28.824,8.293,27.163A81.968,81.968,0,0,1,2.833,19.5,19.607,19.607,0,0,1,0,10.2Z" transform="translate(0 0)"/>
+    </g>
+    <circle id="椭圆_32" data-name="椭圆 32" class="cls-3" cx="4.505" cy="4.505" r="4.505" transform="translate(72.297 486.971)"/>
+  </g>
+</svg>

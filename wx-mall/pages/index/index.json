@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "tui-icon": "/components/icon/icon",
+    "marquee": "/components/marquee/marquee"
+  },
+  "navigationStyle": "custom"
+}

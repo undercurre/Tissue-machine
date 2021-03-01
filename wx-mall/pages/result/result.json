@@ -1,0 +1,6 @@
+{"navigationBarTitleText": "便民纸巾",
+  "usingComponents": {
+    "numberBox": "/components/numberbox/numberbox"
+  },
+  "navigationStyle": "custom"
+}

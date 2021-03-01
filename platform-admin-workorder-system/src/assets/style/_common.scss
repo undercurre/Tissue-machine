@@ -1,0 +1,66 @@
+// ul
+.info-list {
+
+  // li
+  .list-item {
+    // height: 4rem;
+    display: flex;
+    // line-height: 4rem;
+    margin-top: 1rem;
+    font-size: 1.6rem;
+
+    &:nth-child(1) {
+      margin-top: 0;
+      ;
+    }
+
+    // li 里面的内容
+    .item-left {
+      flex: 2;
+      // font-weight: bold;
+    }
+
+    .item-right {
+      flex: 3;
+    }
+
+    .appendix {
+      display: flex;
+      flex-direction: row;
+      margin-top: 1rem;
+
+      a {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        i {
+          font-size: 4rem;
+          fill: currentColor;
+        }
+
+        span {
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+}
+
+// 按钮
+.btn {
+  border: none;
+  outline: none;
+  border-radius: .5rem;
+  color: #fff;
+}
+
+// input框
+.ipt {
+  border: none;
+  background-color: #ccc;
+}
+
+.phone {
+  color: rgb(11, 144, 252);
+}

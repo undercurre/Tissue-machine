@@ -1,0 +1,88 @@
+.all{
+  width: 750rpx;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+.all .Image{
+  position: relative;
+  width: 100%;
+}
+.all .Image .centerPic{
+  width: 45%;
+  position: absolute;
+  top: 60%;
+  left: 30%;
+}
+.all .Txt{
+  width: 100%;
+  position: fixed;
+}
+.all .Txt .machineError{
+  width: fit-content;
+  margin: 0 auto 56rpx;
+  color: #FF9700;
+  font-size: 40rpx;
+}
+.all .Txt .mark{
+  color: #141616;
+  font-size: 26rpx;
+  width: fit-content;
+  margin: 0 auto 56rpx;
+}
+.all .BtnPosition{
+  position: fixed;
+  bottom: 11%;
+  width: 100%;
+}
+.all .BtnPosition .button{
+  background-color: #082F40;
+  color: #ffffff;
+  font-size: 32rpx;
+  border-radius: 25px;
+  width: 610rpx;
+}
+/* 顶部 */
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.top .status {
+  width: 100%;
+}
+
+.top .comment {
+  width: 100%;
+}
+
+.top .comment .FlexBox {
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+  margin-bottom: 12rpx;
+}
+
+.top .comment .FlexBox .backButton {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.backButtonImage {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.mainTitle {
+  color: #fff;
+  font-size: 17px;
+}
+
+.blank {
+  width: 40rpx;
+  height: 40rpx;
+}

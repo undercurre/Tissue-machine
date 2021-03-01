@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdOrderDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.FROM_TYPE,
+        T.ORDER_SN,
+        T.USER_ID,
+        T.ORDER_TYPE,
+        T.ORDER_STATUS,
+        T.ACTUAL_PRICE,
+        T.TOTAL_PRICE,
+        T.COMSUME_PRICE,
+        T.MACHINE_ID,
+        T.CREATE_TIME,
+        T.PAY_TIME,
+        T.IS_DELETE,
+        T.EXPIRE_TIME,
+        T.SHIPMENT_STATUS,
+        U.NICKNAME,
+        T.NUMBER,
+        T.PAY_TYPE,
+        T.COUPON_ID,
+        T.COUPON_PRICE,
+        M.NAME AS MACHINE_NAME
+        FROM AD_ORDER T
+        LEFT JOIN MALL_USER U ON T.USER_ID = U.ID
+        LEFT JOIN AD_TISSUE_MACHINE M ON T.MACHINE_ID = M.ID
+        WHERE 1=1 AND T.IS_DELETE = 0
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </sql>
+    <delete id="deleteOrderById">
+        UPDATE AD_ORDER SET IS_DELETE = 1 WHERE ID=#{orderId}
+    </delete>
+
+    <select id="selectAdOrderPage" resultType="com.platform.modules.ad.entity.AdOrderEntity">
+        SELECT
+        T.ID,
+        T.FROM_TYPE,
+        T.ORDER_SN,
+        T.USER_ID,
+        T.ORDER_TYPE,
+        T.ORDER_STATUS,
+        T.ACTUAL_PRICE,
+        T.TOTAL_PRICE,
+        T.COMSUME_PRICE,
+        T.MACHINE_ID,
+        T.CREATE_TIME,
+        T.PAY_TIME,
+        T.IS_DELETE,
+        T.PAY_TYPE,
+        T.EXPIRE_TIME,
+        T.NUMBER,
+        T.SHIPMENT_STATUS,
+        T.COUPON_ID,
+        T.COUPON_PRICE,
+        U.NICKNAME,
+        M.NAME AS MACHINE_NAME
+        FROM AD_ORDER T
+        LEFT JOIN MALL_USER U ON T.USER_ID = U.ID
+        LEFT JOIN AD_TISSUE_MACHINE M ON T.MACHINE_ID = M.ID
+        WHERE 1=1 AND T.IS_DELETE = 0
+        <if test="params.agentId != null and params.agentId.trim() != ''">
+            AND M.AGENT_ID = #{params.agentId}
+        </if>
+        <if test="params.nickname != null and params.nickname.trim() != ''">
+            AND U.NICKNAME LIKE '%${params.nickname}%'
+        </if>
+        <if test="params.machineName != null and params.machineName.trim() != ''">
+            AND M.NAME LIKE '%${params.machineName}%'
+        </if>
+        <if test="params.orderType != null and params.orderType.trim() != ''">
+            AND T.ORDER_TYPE LIKE '%${params.orderType}%'
+        </if>
+        <if test="params.orderStatus != null and params.orderStatus.trim() != ''">
+            AND T.ORDER_STATUS LIKE '%${params.orderStatus}%'
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdOrderEntity">
+        <include refid="selectSql"/>
+    </select>
+    <select id="getOrderListByUserId" resultType="com.platform.modules.ad.entity.AdOrderEntity">
+        SELECT
+            T.ID,
+            T.FROM_TYPE,
+            T.ORDER_SN,
+            T.USER_ID,
+            T.ORDER_TYPE,
+            T.PAY_TYPE,
+            T.ORDER_STATUS,
+            T.ACTUAL_PRICE,
+            T.TOTAL_PRICE,
+            T.COMSUME_PRICE,
+            T.ACTIVITY_ID,
+            T.MACHINE_ID,
+            T.CREATE_TIME,
+            T.PAY_TIME,
+            T.IS_DELETE,
+            T.EXPIRE_TIME,
+            T.NUMBER,
+            T.SHIPMENT_STATUS,
+            T.COUPON_ID,
+            T.COUPON_PRICE,
+            M.NAME AS MACHINE_NAME
+        FROM AD_ORDER T
+        LEFT JOIN AD_TISSUE_MACHINE M ON T.MACHINE_ID = M.ID
+        WHERE 1=1 AND T.USER_ID= #{userId} AND T.IS_DELETE = 0
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+    <select id="getOrderList" resultType="com.platform.modules.ad.entity.AdOrderEntity">
+        SELECT
+            T.ID,
+            T.FROM_TYPE,
+            T.ORDER_SN,
+            T.USER_ID,
+            T.ORDER_TYPE,
+            T.PAY_TYPE,
+            T.ORDER_STATUS,
+            T.ACTUAL_PRICE,
+            T.TOTAL_PRICE,
+            T.COMSUME_PRICE,
+            T.ACTIVITY_ID,
+            T.MACHINE_ID,
+            T.CREATE_TIME,
+            T.PAY_TIME,
+            T.IS_DELETE,
+            T.SHIPMENT_STATUS,
+            T.COUPON_ID,
+            T.COUPON_PRICE,
+            T.EXPIRE_TIME
+        FROM AD_ORDER T
+            LEFT JOIN AD_ORDER_TISSUE OT ON OT.ORDER_ID = T.ID
+            ${ew.customSqlSegment}
+    </select>
+    <select id="queryById" resultType="com.platform.modules.ad.entity.AdOrderEntity">
+        SELECT
+            T.ID,
+            T.FROM_TYPE,
+            T.ORDER_SN,
+            T.USER_ID,
+            T.ORDER_TYPE,
+            T.PAY_TYPE,
+            T.ORDER_STATUS,
+            T.ACTUAL_PRICE,
+            T.TOTAL_PRICE,
+            T.COMSUME_PRICE,
+            T.MACHINE_ID,
+            T.CREATE_TIME,
+            T.PAY_TIME,
+            T.IS_DELETE,
+            T.EXPIRE_TIME,
+            U.NICKNAME,
+            T.NUMBER,
+            T.SHIPMENT_STATUS,
+            T.COUPON_ID,
+            T.COUPON_PRICE,
+            M.NAME AS MACHINE_NAME
+        FROM AD_ORDER T
+                 LEFT JOIN MALL_USER U ON T.USER_ID = U.ID
+                 LEFT JOIN AD_TISSUE_MACHINE M ON T.MACHINE_ID = M.ID
+        WHERE 1=1 AND T.ID = #{id}
+    </select>
+    <select id="orderAccount" resultType="com.platform.modules.vo.AdOrderAccountVo">
+        SELECT
+            SUM(T.TOTAL_PRICE)  AS SALE_SUM ,
+            (SELECT COUNT(ID) FROM AD_ORDER WHERE ORDER_STATUS= 1
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+        ) AS VALID_ORDER_NUMBER ,
+            (SELECT IFNULL(SUM(TOTAL_PRICE),0) FROM AD_ORDER WHERE ORDER_STATUS =1
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS VALID_ORDER_SUM,
+            (SELECT COUNT(ID) FROM AD_ORDER WHERE ORDER_STATUS IN  (0,2,3,4)
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS INVALID_ORDER_NUMBER ,
+            (SELECT IFNULL(SUM(TOTAL_PRICE),0) FROM AD_ORDER WHERE ORDER_STATUS IN  (0,2,3,4)
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS INVALID_ORDER_SUM,
+            (SELECT COUNT(ID) FROM AD_ORDER WHERE ORDER_STATUS= 1 AND SHIPMENT_STATUS = 2
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS FINISH_ORDER_NUMBER ,
+            (SELECT IFNULL(SUM(TOTAL_PRICE),0) FROM AD_ORDER WHERE ORDER_STATUS =1 AND SHIPMENT_STATUS = 2
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS FINISH_ORDER_SUM
+        FROM
+        AD_ORDER T
+        WHERE 1 = 1
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+    </select>
+    <select id="orderAccountByProxyAgentId" resultType="com.platform.modules.vo.AdOrderAccountVo">
+        SELECT
+        IFNULL( SUM( T.TOTAL_PRICE ), 0 )  AS SALE_SUM,
+            (SELECT
+                COUNT( ID )
+            FROM(
+            SELECT
+            O.ID,
+            O.ORDER_STATUS,
+            O.ACTUAL_PRICE,
+            O.COMSUME_PRICE,
+            O.MACHINE_ID,
+            O.CREATE_TIME,
+            O.PAY_TIME,
+            O.SHIPMENT_STATUS
+            FROM
+                    AD_ORDER O
+                    INNER JOIN ( SELECT M.ID FROM AD_TISSUE_MACHINE M WHERE M.AGENT_ID = #{AgentId} ) E ON O.MACHINE_ID = E.ID ) T
+            WHERE
+                ORDER_STATUS = 1
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS VALID_ORDER_NUMBER,
+            (SELECT
+        IFNULL( SUM( TOTAL_PRICE ), 0 )
+            FROM(
+            SELECT
+                O.ID,
+                O.ORDER_STATUS,
+                O.TOTAL_PRICE,
+                O.COMSUME_PRICE,
+                O.MACHINE_ID,
+                O.CREATE_TIME,
+                O.PAY_TIME,
+                O.SHIPMENT_STATUS
+                FROM
+                    AD_ORDER O
+                    INNER JOIN ( SELECT M.ID FROM AD_TISSUE_MACHINE M WHERE M.AGENT_ID = #{AgentId} ) E ON O.MACHINE_ID = E.ID) T
+            WHERE
+                ORDER_STATUS = 1
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS VALID_ORDER_SUM,
+            (SELECT
+                COUNT( ID )
+            FROM(
+                SELECT
+                O.ID,
+                O.ORDER_STATUS,
+                O.TOTAL_PRICE,
+                O.COMSUME_PRICE,
+                O.MACHINE_ID,
+                O.CREATE_TIME,
+                O.PAY_TIME,
+                O.SHIPMENT_STATUS
+                FROM
+                    AD_ORDER O
+                    INNER JOIN ( SELECT M.ID FROM AD_TISSUE_MACHINE M WHERE M.AGENT_ID = #{AgentId} ) E ON O.MACHINE_ID = E.ID) T
+            WHERE
+                ORDER_STATUS IN (0, 2, 3, 4 )
+            ) AS INVALID_ORDER_NUMBER,
+            ( SELECT IFNULL( SUM( TOTAL_PRICE ), 0 ) FROM AD_ORDER WHERE ORDER_STATUS IN ( 0,2, 3, 4 ) ) AS INVALID_ORDER_SUM,
+            (SELECT
+                COUNT( ID )
+            FROM(
+                SELECT
+                O.ID,
+                O.ORDER_STATUS,
+                O.TOTAL_PRICE,
+                O.COMSUME_PRICE,
+                O.MACHINE_ID,
+                O.CREATE_TIME,
+                O.PAY_TIME,
+                O.SHIPMENT_STATUS
+                FROM
+                    AD_ORDER O
+                    INNER JOIN ( SELECT M.ID FROM AD_TISSUE_MACHINE M WHERE M.AGENT_ID = #{AgentId} ) E ON O.MACHINE_ID = E.ID) T
+            WHERE
+                ORDER_STATUS = 1 AND SHIPMENT_STATUS = 2
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS FINISH_ORDER_NUMBER,
+            (
+            SELECT
+                IFNULL( SUM( TOTAL_PRICE ), 0 )
+            FROM(
+                SELECT
+                    O.ID,
+                    O.ORDER_STATUS,
+                    O.TOTAL_PRICE,
+                    O.COMSUME_PRICE,
+                    O.MACHINE_ID,
+                    O.CREATE_TIME,
+                    O.PAY_TIME,
+                    O.SHIPMENT_STATUS
+                FROM
+                    AD_ORDER O
+                    INNER JOIN ( SELECT M.ID FROM AD_TISSUE_MACHINE M WHERE M.AGENT_ID = #{AgentId} ) E ON O.MACHINE_ID = E.ID
+                ) T
+            WHERE
+                ORDER_STATUS = 1 AND SHIPMENT_STATUS = 2
+        <if test="day != null">
+            AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+        </if>
+            ) AS FINISH_ORDER_SUM
+                FROM
+                (
+                SELECT
+                O.ID,
+                O.ORDER_STATUS,
+                O.TOTAL_PRICE,
+                O.COMSUME_PRICE,
+                O.MACHINE_ID,
+                O.CREATE_TIME,
+                O.PAY_TIME,
+                O.SHIPMENT_STATUS
+                FROM
+                AD_ORDER O
+                INNER JOIN ( SELECT M.ID FROM AD_TISSUE_MACHINE M WHERE M.AGENT_ID = #{AgentId} ) E ON O.MACHINE_ID = E.ID ) T
+                WHERE 1 = 1
+                <if test="day != null">
+                    AND DATE_SUB(CURDATE(), INTERVAL #{day} DAY)  <![CDATA[ <= ]]> CREATE_TIME
+                </if>
+    </select>
+
+    <select id="userCount" resultType="com.platform.modules.vo.AdUserCountVo">
+        SELECT
+        COUNT(1) AS ORDER_NUMBER,
+        COUNT(DISTINCT O.USER_ID) AS HAVE_ORDER_USER_NUMBER
+        FROM SYS_USER SU
+        LEFT JOIN AD_TISSUE_MACHINE M ON SU.USER_ID = M.AGENT_ID
+        RIGHT JOIN AD_ORDER O ON M.ID = O.MACHINE_ID
+        LEFT JOIN MALL_USER MU ON MU.ID = O.USER_ID
+        WHERE O.ORDER_STATUS = 1
+        <if test="agentId != null">
+            AND SU.USER_ID = #{agentId}
+        </if>
+    </select>
+
+    <select id="registerUserCount" resultType="Integer">
+        SELECT
+        COUNT(1)
+        FROM SYS_USER SU
+        LEFT JOIN AD_TISSUE_MACHINE M ON SU.USER_ID = M.AGENT_ID
+        LEFT JOIN AD_MACHINE_AGENT G ON M.ID = G.MACHINE_ID
+        LEFT JOIN MALL_USER MU ON MU.ID = G.USER_ID
+        WHERE 1 = 1
+        <if test="days != null">
+            AND MU.REGISTER_TIME >= DATE_SUB(curdate(), interval #{days} DAY)
+        </if>
+        <if test="agentId != null">
+            AND M.AGENT_ID = #{agentId}
+        </if>
+        AND G.FROM_TYPE = 0
+    </select>
+    <select id="queryVipCountByDate" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM AD_ORDER O
+        WHERE 1 = 1 AND O.ORDER_TYPE = 3 AND O.ORDER_STATUS = 1
+        <if test="type == 1">
+            AND TO_DAYS(O.PAY_TIME) = TO_DAYS(NOW())
+        </if>
+        <if test="type == 2">
+            AND YEARWEEK(DATE_FORMAT(O.PAY_TIME,'%Y-%m-%d')) = YEARWEEK(NOW())
+        </if>
+        <if test="type == 3">
+            AND DATE_FORMAT( O.PAY_TIME, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+        </if>
+        <if test="type == 4">
+            AND QUARTER(O.PAY_TIME)=QUARTER(now())
+        </if>
+        <if test="type == 5">
+            AND YEAR(O.PAY_TIME) = YEAR(NOW())
+        </if>
+    </select>
+
+        <select id="queryTissueByDate" resultType="com.platform.modules.vo.TissueByDateVo">
+        SELECT
+        IFNULL(SUM(O.NUMBER),0) AS TISSUE_SUM,
+        COUNT(DISTINCT O.USER_ID) AS USER_COUNT
+        FROM AD_ORDER O
+        WHERE 1 = 1 AND (O.ORDER_TYPE = 1 OR O.ORDER_TYPE = 2) AND O.ORDER_STATUS = 1
+        <if test="type == 1">
+            AND TO_DAYS(O.PAY_TIME) = TO_DAYS(NOW())
+        </if>
+        <if test="type == 2">
+            AND YEARWEEK(DATE_FORMAT(O.PAY_TIME,'%Y-%m-%d')) = YEARWEEK(NOW())
+        </if>
+        <if test="type == 3">
+            AND DATE_FORMAT( O.PAY_TIME, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+        </if>
+        <if test="type == 4">
+            AND QUARTER(O.PAY_TIME)=QUARTER(now())
+        </if>
+        <if test="type == 5">
+            AND YEAR(O.PAY_TIME) = YEAR(NOW())
+        </if>
+    </select>
+
+    <select id="groupByTissueInCity" resultType="com.platform.modules.vo.RegionSortVo">
+        SELECT
+        T.CITY AS REGION_NAME,
+        COUNT(1) AS TISSUE_NUMBER
+        FROM AD_TISSUE_MACHINE T
+        LEFT JOIN AD_ORDER O ON T.ID = O.MACHINE_ID
+        WHERE O.ORDER_STATUS = 1 AND (O.ORDER_TYPE = 1 OR O.ORDER_TYPE = 2)
+        GROUP BY T.CITY
+    </select>
+
+    <select id="groupByTissueInDistrict" resultType="com.platform.modules.vo.RegionSortVo">
+        SELECT
+        T.DISTRICT AS REGION_NAME,
+        COUNT(1) AS TISSUE_NUMBER
+        FROM AD_TISSUE_MACHINE T
+        LEFT JOIN AD_ORDER O ON T.ID = O.MACHINE_ID
+        WHERE O.ORDER_STATUS = 1 AND (O.ORDER_TYPE = 1 OR O.ORDER_TYPE = 2)
+        GROUP BY T.DISTRICT
+    </select>
+
+</mapper>

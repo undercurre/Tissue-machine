@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysUserDepartmentDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.USER_ID,
+        T.DEPARTMENT_ID
+        FROM SYS_USER_DEPARTMENT T
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+    </sql>
+
+    <select id="selectSysUserDepartmentPage" resultType="com.platform.modules.sys.entity.SysUserDepartmentEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.sys.entity.SysUserDepartmentEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryDepartmentIdList" resultType="java.lang.String">
+        SELECT
+        T.DEPARTMENT_ID
+        FROM SYS_USER_DEPARTMENT T
+        WHERE T.USER_ID = #{userId}
+    </select>
+
+    <select id="selectManageByDepartment" resultType="java.lang.String">
+        SELECT DISTINCT
+        A.MP_OPEN_ID
+        FROM
+        SYS_USER_DEPARTMENT S
+        INNER JOIN (
+        SELECT
+        UR.USER_ID,
+        U.MP_OPEN_ID
+        FROM
+        SYS_USER_ROLE UR
+        LEFT JOIN SYS_ROLE R ON UR.ROLE_ID = R.ROLE_ID
+        LEFT JOIN SYS_USER U ON UR.USER_ID = U.USER_ID
+        WHERE
+        R.ROLE_NAME = "运维经理"
+        ) AS A ON A.USER_ID = S.USER_ID
+        WHERE S.DEPARTMENT_ID IN
+        <foreach item="departmentId" collection="departmentList"  open="(" separator="," close=")">
+            #{departmentId}
+        </foreach>
+    </select>
+</mapper>

@@ -1,0 +1,34 @@
+view,
+text {
+  font-size: 0;
+}
+
+.scan-ad {
+  width: 100vw;
+  height: 100vh;
+  /* top: 0;
+  left: 0;
+  position: absolute; */
+  z-index: 9999;
+}
+
+.scan-ad image {
+  width: 100%;
+  height: 100%;
+}
+
+.countdown {
+  position: absolute ;
+  height: 40rpx;
+  width: 150rpx;
+  text-align: center;
+  font-size: 26rpx;
+  line-height: 40rpx;
+  border-radius: 50px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  z-index: 10000;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}

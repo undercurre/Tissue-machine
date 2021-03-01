@@ -1,0 +1,18 @@
+<!--pages/gettingRecord/gettingRecord.wxml-->
+<view class="record">
+  <view class="record_item" wx:for="{{gettingRecord}}" wx:key="orderSn">
+    <view class="record_top">
+      <view class="record_num">订单编号：{{item.orderSn}}</view>
+      <view class="record_count">-{{item.number}}包</view>
+    </view>
+    <view class="record_bottom">
+      <view class="record_time">{{item.payTime}}</view>
+      <view class="record_mode">领取纸巾</view>
+    </view>
+  </view>
+  <view  class="blankContent" wx:if="{{gettingRecord.length ==0}}">
+  <view>
+    <image class="blankContentImage" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/myTissue%403x.png"></image>
+  </view>
+</view>
+</view>

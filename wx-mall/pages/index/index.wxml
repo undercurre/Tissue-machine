@@ -1,0 +1,167 @@
+<view class="page-body">
+	<!-- 地图背景 -->
+	<map id="map" wx:if="{{hasMarkers}}" style="width:100%; height:{{Height}}px" scale='14' latitude="{{latitude}}" longitude="{{longitude}}" markers="{{markers}}" bindmarkertap="bindmarkertap" bindcallouttap="bindMapMakerCallouttap" bindtap="bindtapOther" data-logo="{{markers.isShowLogo}}" data-id="{{markers.id}}" show-compass="true">
+	</map>
+
+	<!-- 上部 -->
+	<view wx:if="{{showHeight}}" class="top" style="height: {{topHeight}}px">
+		<view class="status" style="height: {{statusHeight}}px">
+		</view>
+		<view class="comment" style="height: {{commentHeight}}px">
+			<view class="FlexBox" style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{35}}px;margin-top:{{bbTopX}}px">
+				<image bindtap="navToPersonalCenter" class="image" src="{{userInfo.headImgUrl || 'https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/personalCenter.png'}}" mode="widthFix"></image>
+				<view style="margin-left: {{textLeft}}px;font-size:{{17}}px">首页</view>
+				<view class="kong"></view>
+			</view>
+		</view>
+	</view>
+
+	<!-- 宣传栏和通知栏 -->
+	<view wx:if="{{showHeight}}" class="bulletinBoardAndNoticeBoard" style="top:{{bulletinBoard}}px">
+		<!-- 宣传栏 -->
+		<view class="bulletinBoard" wx:if="{{hasOrderPatch}}">
+			<swiper autoplay="auto" interval="5000" duration="500" indicator-dots="true" circular="true" class="bulletinBoardContent">
+				<block wx:for="{{orderPatch}}" wx:key="unique">
+					<swiper-item data-id="{{item.id}}">
+						<image class="bulletinBoardContent" src="{{item.imageUrl}}" mode="aspectFill"></image>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+		<view wx:else class="bulletinBoard"></view>
+		<!-- 通知栏 -->
+		<!-- <view class="noticeBoard">
+			<image class="noticeBoardLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/noticeLogo3x.png">
+			</image>
+			<view class="marquee_container" style="--marqueeWidth--:-{{textLength}}px">
+				<view class="marquee_text">1234567890abcdefghijklmnopqrstuvwxyz==1234567890abcdefghijklmnopqrstuvwxyz===>1234567890abcdefghijklmnopqrstuvwxyz</view>
+			</view>
+		</view> -->
+		<view class="noticeAll">
+		<view class='tui-notice-board' >
+			<view class="tui-icon-bg">
+						<image class="noticeBoardLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/noticeLogo3x.png">
+			</image>
+			</view>
+			<view class="tui-scorll-view">
+				<view class="{{isStart === 1 ? 'tui-notice2 tui-animation' : 'tui-notice1'}}"
+				 style="--time--:{{textTime}}s;--txtLength--:-{{textLength}}px;width:fit-content">
+					{{notice}}</view>
+			</view>
+		</view>
+		</view>
+	</view>
+	<!-- 右侧功能栏 -->
+	<view class="funtionBar">
+		<view class="messageButton" bindtap="navToMessage">
+			<view class="BorderBottom">
+				<image class="buttonLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Open3xZpq.png" mode="aspectFit">
+				</image>
+				<view class="buttonTitle">消息</view>
+			</view>
+		</view>
+		<view class="refreshButton" bindtap="refresh">
+			<view class="BorderBottom">
+				<image class="buttonLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/reflash3xZpq.png" mode="aspectFit">
+				</image>
+				<view class="buttonTitle">刷新</view>
+			</view>
+		</view>
+		<view class="searchButton" bindtap="navToSearch">
+			<view class="BorderBottom">
+				<image class="buttonLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/search3xZpq.png" mode="aspectFit">
+				</image>
+				<view class="buttonTitle">搜索</view>
+			</view>
+		</view>
+
+		<view class="keFuBorderBottom">
+			<button class="customerServiceButton" open-type="contact">
+				<view class="FlexAcc">
+					<image class="buttonLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/CustomerService3xZpq.png"></image>
+				</view>
+			</button>
+			<view class="buttonTitle">客服</view>
+		</view>
+
+			<!-- 我要投广告，相对于功能栏使用absloute定位 -->
+			<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/createAd3x.png" mode="scaleToFill" class="createAd" bindtap="gotoCreateAd"></image>
+	</view>
+
+	<!-- 扫码领取 -->
+	<view class="scan" bindtap="openScan" wx:if="{{!showMachineDetail}}">
+		<image class="scanLogo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/scan.png">
+		</image>
+		<view class="scanTitle">扫码领取</view>
+	</view>
+
+	<!-- 机器详情 -->
+	<view class="machine_detail" wx:else>
+		<view class="machine_detail_top">
+			<image class="machine_image" bindtap="toMachineDetail" data-id="{{machineInfo.id}}" src="{{machineInfo.isShowLogo==1? machineInfo.machineLogo : machineInfo.machineImage}}"></image>
+			<view class="machine_name" bindtap="toMachineDetail" data-id="{{machineInfo.id}}">{{machineInfo.name}}
+			</view>
+
+
+			<view class="machine_scan" wx:if="{{machineInfo.status == 1}}" bindtap="openScan">
+				<image class="machine_scan_image" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/cardScan3xZpq.png">
+				</image>
+				<view class="machine_scan_text">扫一扫</view>
+			</view>
+
+			<view class="machine_error" wx:else>
+				设备维护中
+			</view>
+		</view>
+		<!-- 工作时间、工作地点、导航按钮 -->
+		<view class="machine_detail_center">
+			<view class="machine_detail_center_left" bindtap="toMachineDetail">
+				<view class="machine_address">
+					<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/timeZpq.png" class="iconLitle" mode="aspectFit"></image>
+					<view>{{machineInfo.workTime}}</view>
+				</view>
+				<view class="machine_address">
+					<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/addressZpq.png" mode="aspectFit"></image>
+					<view>{{machineInfo.address}}</view>
+				</view>
+			</view>
+			<view class="machine_navigation" bindtap="toHere" data-id="{{machineInfo}}">
+				<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/navigationZpq3x.png"></image>
+				<view>导航</view>
+			</view>
+		</view>
+		<!-- 设备剩余xx包纸巾、问题反馈 -->
+		<view class="machine_detail_bottom" data-id="{{machineInfo.id}}">
+			<view class="BigBoxbwt">
+				<view wx:if="{{machineInfo.status == 1}}" class="machine_stock_con">
+					<view class="machine_stock">
+						<view>
+							设备剩余
+						</view>
+					</view>
+					<view class="red">
+						<view>
+							{{machineInfo.tissueNumber}}
+						</view>
+					</view>
+					<view class="machine_stock">
+						<view>
+							包纸巾
+						</view>
+					</view>
+				</view>
+				<view class="erro" wx:else></view>
+				<view class="machine_feedback_title" bindtap="toFeedBack" data-id="{{machineInfo.id}}">
+					<view>
+						<view>问题反馈</view>
+					</view>
+					<view>
+						<image class="machine_arrow Image" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Forward.png">
+						</image>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>

@@ -1,0 +1,70 @@
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 25rpx;
+  /* background: linear-gradient(to bottom, #e41f19 0%, #fff 100%); */
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-top: 20rpx;
+  margin-bottom: 25rpx;
+}
+
+.userinfo-nickname {
+  color: #272727;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+/* 绑定手机号的两个form */
+
+.login-title {
+  margin: 20rpx 0 35rpx;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.login {
+  font-size: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login .line {
+  margin-left: 10rpx;
+  height: 80rpx;
+  border: 1rpx solid rgb(217, 217, 217);
+  border-radius: 5px;
+  width: 490rpx;
+}
+
+.login .line input {
+  padding-left: 20rpx;
+  height: 80rpx;
+}
+
+.submit {
+  margin-left: auto;
+  margin-right: auto;
+  width: 600rpx;
+}
+
+.submit button {
+  height: 80rpx;
+  font-size: 32rpx;
+  background-color: #082F40;
+  color: #fff;
+}
+
+.frame {
+  width: 600rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20rpx 0 ;
+}

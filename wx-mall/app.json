@@ -1,0 +1,68 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/pay/pay",
+    "pages/payResult/payResult",
+    "pages/ucenter/kefu/kefu",
+    "pages/ucenter/wuliu/wuliu",
+    "pages/ucenter/sign/sign",
+    "pages/auth/login/login",
+    "pages/auth/btnAuth/btnAuth",
+    "pages/auth/mobile/mobile",
+    "pages/auth/company/company",
+    "pages/ucenter/yue/yue",
+    "pages/ucenter/set/set",
+    "pages/ucenter/about/about",
+    "pages/ucenter/bankCard/bankCard",
+    "pages/ucenter/bindingBank/bindingBank",
+    "pages/ucenter/test/test",
+    "pages/personalCenter/personalCenter",
+    "pages/inShipment/inShipment",
+    "pages/shipmentStatus/shipmentStatus",
+    "pages/result/result",
+    "pages/adScan/adScan",
+    "pages/ucenter/message/message",
+    "pages/problemFeedback/problemFeedback",
+    "pages/myOrder/myOrder",
+    "pages/interestSurvey/interestSurvey",
+    "pages/machineDetail/machineDetail",
+    "pages/nearMachine/nearMachine",
+    "pages/TransactionDetails/TransactionDetails",
+    "pages/auth/info/info",
+    "pages/machineErrorStatus/machineErrorStatus",
+    "pages/coupon/coupon",
+    "pages/myWallet/myWallet",
+    "pages/selectVolume/selectVolume",
+    "pages/myTissue/myTissue",
+    "pages/gettingRecord/gettingRecord",
+    "pages/createAd/createAd",
+    "pages/userCard/userCard"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "便民纸巾设备",
+    "navigationBarBackgroundColor": "#fff",
+    "enablePullDownRefresh": false
+  },
+  "networkTimeout": {
+    "request": 15000,
+    "downloadFile": 15000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于乐晟技术"
+    }
+  },
+  "plugins": {
+    "chooseLocation": {
+      "version": "1.0.5",
+      "provider": "wx76a9a06e5b4e693e"
+    },
+    "routePlan": {
+      "version": "1.0.8",
+      "provider": "wx50b5593e81dd937a"
+    }
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

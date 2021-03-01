@@ -1,0 +1,239 @@
+page{
+  height: 100vh;
+  width: 100vw;
+}
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 750rpx;
+  z-index: 2;
+}
+
+.top .status {
+  width: 100%;
+}
+
+.top .comment {
+  width: 100%;
+}
+
+.top .comment .FlexBox {
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+  margin-bottom: 12rpx;
+}
+
+.top .comment .FlexBox .backButton {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.backButtonImage {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.mainTitle {
+  color: #fff;
+  font-size: 34rpx;
+}
+
+.blank {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.pageBG {
+  background-image: linear-gradient(to right, #082F40, #142D38);
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* 顶部背景 */
+.pageBG .BackGround {
+  width: 750rpx;
+  height: 26vh;
+  position: relative;
+  z-index: 1;
+}
+.BackGround .balanceBox {
+  position: absolute;
+  top: 40%;
+  width: 100%;
+}
+.pageBG .BackGround .balanceBox .count{
+  font-size: 64rpx;
+  color: #ffffff;
+  width: fit-content;
+  margin: 0 auto;
+}
+.pageBG .BackGround .balanceBox .mark{
+  font-size: 26rpx;
+  color: #ffffff;
+  width: fit-content;
+  margin: 0 auto 34rpx;
+}
+/*交易明细  */
+.pageBG .whiteSpace{
+  width: 100%;
+  background-color: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  position: relative;
+  z-index: 1;
+  height: calc(100% - 26vh);
+}
+.whiteSpace .transactionDetails{
+  margin: 0 30rpx;
+  padding: 40rpx 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.whiteSpace .transactionDetails .txt{
+  color: #333333;
+  font-size: 30rpx;
+  
+}
+.whiteSpace .transactionDetails view {
+  display: flex;
+  justify-content: flex-end;
+  width: 80rpx;
+  height: 40rpx;
+
+}
+.whiteSpace .transactionDetails .img{
+  width: 16rpx;
+  height: 30rpx;
+}
+.whiteSpace .line{
+  margin: 0 30rpx 40rpx;
+  background-color: #ccc;
+  height: 3rpx;
+}
+
+.whiteSpace .paytxt{
+  color: #333;
+  font-size: 30rpx;
+  margin-left: 30rpx;
+  margin-top: 40rpx;
+}
+.whiteSpace .choice{
+  margin: 0;
+}
+.whiteSpace .choice .btn{
+  background-color: #F8F5F9;
+  color: #333;
+  font-size: 36rpx;
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 40rpx 20rpx 0;
+  display: inline-block;
+  border-radius: 12px;
+}
+.whiteSpace .choice .choose{
+  background-color: #0E2D3B;
+  color: #fff;
+  font-size: 36rpx;
+  width: 200rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  margin: 40rpx 20rpx 0;
+  display: inline-block;
+  border-radius: 12px;
+}
+/* 支付方式 */
+.whiteSpace .payWay{
+  margin: 32rpx 30rpx 0;
+  border: 2rpx solid #082F40;
+  border-radius: 32px;
+  height: 116rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx;
+}
+.whiteSpace .payWay .left{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.whiteSpace .payWay .left .wechat{
+  width: 34rpx;
+  height: 30rpx;
+  margin-right: 20rpx;
+}
+.whiteSpace .payWay .left .txt{
+  color: #333333;
+  font-size: 28rpx;
+}
+.whiteSpace .payWay .right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.whiteSpace .payWay .right .select{
+  width: 30rpx;
+  height: 30rpx;
+}
+.whiteSpace .payMoney{
+  width: 100%;
+  margin: 44rpx 0 0 0;
+}
+.whiteSpace .payMoney .txtBox{
+  width: fit-content;
+  margin: 0 auto;
+}
+.whiteSpace .payMoney .txtBox .money{
+  color: #082F40;
+  font-size: 80rpx;
+  text-align: center;
+}
+.whiteSpace .btnGroup{
+  width: 100%;
+  margin: 40rpx 0;
+}
+.whiteSpace .btnGroup .payNow{
+  margin: 0 70rpx;
+  font-size: 32rpx;
+  color: #fff;
+  background-color: #082F40;
+  border-radius: 24px;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+}
+.whiteSpace .isLight{
+  margin: 0 70rpx;
+  font-size: 32rpx;
+  color: #fff;
+  background-color: #082F40;
+  border-radius: 24px;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+  position: relative;
+  top: 54vh;
+}
+.whiteSpace .btnGroup .noLight{
+  margin: 0 70rpx;
+  font-size: 32rpx;
+  color: #082F40;
+  background-color: #fff;
+  border-radius: 24px;
+  height: 96rpx;
+  line-height: 96rpx;
+  text-align: center;
+}
+/* 隐藏分享按钮的边框 */
+button[class="btn"]::after {
+  border: 0;
+}
+/* button[class="button-hover"]::after {
+  border: 0;
+} */

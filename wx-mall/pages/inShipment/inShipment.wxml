@@ -1,0 +1,71 @@
+<!-- <view class="frame">
+  <view class="freshLogo">
+    <view class="tui-loading-row">
+      <view class="tui-loading-cell">
+        <view class="circle-line">
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+        </view>
+      </view>
+      <view class="tui-loading-cell">
+        <view class="circle-line-spin">
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+        </view>
+      </view>
+      <view class="tui-loading-cell">
+        <view class="circle-round">
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+          <text></text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="title">正在出货，请稍后...</view>
+</view> -->
+<view class="all" hidden="{{isHidden}}">
+  <view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+    <view class="status" style="height:{{statusHeight}}px"></view>
+    <view class="comment" style="height: {{commentHeight}}px">
+      <view class="FlexBox"
+        style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+        <view class="backButton" bindtap="backIndex">
+          <image src="/static/images/backButton.svg" class="backButtonImage" mode="scaleToFill"></image>
+        </view>
+        <view class="mainTitle" style="margin-left: {{textLeft}}px;"></view>
+      </view>
+    </view>
+  </view>
+  <view class="Image">
+    <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/machinestatusBgZpq3x.png" style="width:100%"
+      mode="scaleToFill"></image>
+    <view class="centerPic">
+      <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/outputpaperZ.gif"
+        style="width:280rpx;height:210rpx" mode="widthFix"></image>
+      <view class="Txt">
+        <view class="mark">亲当前设备正在出纸中，请稍后...</view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="BtnPosition">
+    <button class="button" bindtap="GotoNearMachine">附近设备</button>
+  </view> -->
+</view>

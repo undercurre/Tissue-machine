@@ -1,0 +1,56 @@
+<svg id="出货失败" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="375" height="278" viewBox="0 0 375 278">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #082f40;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-2 {
+        opacity: 0.266;
+      }
+
+      .cls-4 {
+        fill: rgba(255,0,0,0.53);
+      }
+
+      .cls-5 {
+        fill: #ff2c2c;
+      }
+
+      .cls-6 {
+        filter: url(#椭圆_44);
+      }
+    </style>
+    <filter id="椭圆_44" x="127" y="156" width="122" height="122" filterUnits="userSpaceOnUse">
+      <feOffset dy="1" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-color="#4e4e4e" flood-opacity="0.235"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="背景">
+    <path id="路径_23" data-name="路径 23" class="cls-1" d="M0,0H375V278s-94.164-66.889-187.914-66.889S0,278,0,278Z"/>
+    <circle id="椭圆_45" data-name="椭圆 45" class="cls-2" cx="7.5" cy="7.5" r="7.5" transform="translate(10 104)"/>
+    <circle id="椭圆_46" data-name="椭圆 46" class="cls-2" cx="11.5" cy="11.5" r="11.5" transform="translate(35 143)"/>
+    <circle id="椭圆_47" data-name="椭圆 47" class="cls-2" cx="11.5" cy="11.5" r="11.5" transform="translate(268 165)"/>
+    <circle id="椭圆_48" data-name="椭圆 48" class="cls-2" cx="6.5" cy="6.5" r="6.5" transform="translate(333 121)"/>
+    <path id="路径_24" data-name="路径 24" class="cls-3" d="M499.478,3086.1l-1.426,3.986-3.854.308,3.62,1.555.452,3.87,1.435-3.615,4.177-.683-3.972-1.285Z" transform="matrix(0.995, -0.105, 0.105, 0.995, -662.466, -2869.852)"/>
+    <path id="路径_26" data-name="路径 26" class="cls-3" d="M498.8,3086.1l-1.243,3.5-3.359.271,3.156,1.367.394,3.4,1.251-3.178,3.641-.6-3.463-1.13Z" transform="matrix(0.995, -0.105, 0.105, 0.995, -591.343, -2863.686)"/>
+    <path id="路径_27" data-name="路径 27" class="cls-3" d="M499.8,3086.1l-1.514,4.57-4.092.353,3.844,1.783.48,4.437,1.524-4.145,4.435-.784-4.218-1.474Z" transform="matrix(0.995, -0.105, 0.105, 0.995, -571.615, -2814.269)"/>
+    <path id="路径_25" data-name="路径 25" class="cls-3" d="M496.61,3086.1l-.651,1.837-1.76.142,1.654.716.206,1.783.656-1.666,1.908-.315-1.814-.592Z" transform="matrix(0.995, -0.105, 0.105, 0.995, -683.918, -2809.641)"/>
+  </g>
+  <g id="组_173" data-name="组 173">
+    <g class="cls-6" transform="matrix(1, 0, 0, 1, 0, 0)">
+      <circle id="椭圆_44-2" data-name="椭圆 44" class="cls-3" cx="46" cy="46" r="46" transform="translate(142 170)"/>
+    </g>
+    <g id="组_115" data-name="组 115" transform="translate(0 1.427)">
+      <rect id="矩形_85" data-name="矩形 85" class="cls-4" width="7" height="7" rx="3.5" transform="translate(185 234)"/>
+      <rect id="矩形_84" data-name="矩形 84" class="cls-5" width="43.597" height="7" rx="3.5" transform="translate(192 187.573) rotate(90)"/>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="175.351" height="165.592" viewBox="0 0 175.351 165.592">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: rgba(255,208,180,0.93);
+      }
+
+      .cls-2 {
+        fill: #c9c9c9;
+      }
+
+      .cls-10, .cls-3, .cls-4, .cls-5, .cls-6, .cls-9 {
+        fill: none;
+      }
+
+      .cls-11, .cls-12, .cls-3, .cls-4, .cls-5, .cls-9 {
+        stroke: #ff8d4a;
+      }
+
+      .cls-3, .cls-4, .cls-5, .cls-6 {
+        stroke-miterlimit: 10;
+      }
+
+      .cls-3, .cls-5 {
+        stroke-width: 1.193px;
+      }
+
+      .cls-3 {
+        opacity: 0.6;
+      }
+
+      .cls-10, .cls-12, .cls-4, .cls-6, .cls-9 {
+        stroke-linecap: round;
+        stroke-width: 1.79px;
+      }
+
+      .cls-5 {
+        stroke-dasharray: 2.386 2.386 2.386 2.386 2.386 2.386;
+      }
+
+      .cls-10, .cls-6 {
+        stroke: #727b80;
+      }
+
+      .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-8 {
+        fill: #f3f6fd;
+      }
+
+      .cls-10, .cls-12, .cls-9 {
+        stroke-linejoin: round;
+      }
+
+      .cls-11 {
+        fill: #727b80;
+      }
+
+      .cls-12 {
+        fill: #f7f8f9;
+      }
+    </style>
+  </defs>
+  <g id="组_185" data-name="组 185" transform="translate(-105.649 -225.408)">
+    <g id="组_184" data-name="组 184" transform="translate(106 226)">
+      <path id="路径_53" data-name="路径 53" class="cls-1" d="M249,503l-28,61s21-1,22,0,14-39,14-39Z" transform="translate(-195.4 -440.19)"/>
+      <path id="路径_54" data-name="路径 54" class="cls-1" d="M301,528l12,36s20.75-1.016,22,0-22-53-22-53Z" transform="translate(-195.48 -440.169)"/>
+      <path id="路径_55" data-name="路径 55" class="cls-1" d="M311,504l-60.46.373s7.189,19.756,6.531,21.008,41.4,1.79,41.4,1.79Z" transform="translate(-195.451 -440.306)"/>
+      <path id="路径_56" data-name="路径 56" class="cls-2" d="M227.021,587,224,594.559a7.536,7.536,0,0,0,7,10.336h92.962a7.537,7.537,0,0,0,7.15-9.92L328.445,587" transform="translate(-195.445 -439.895)"/>
+      <line id="直线_32" data-name="直线 32" class="cls-3" x2="9.546" transform="translate(4.475 71.805)"/>
+      <line id="直线_33" data-name="直线 33" class="cls-3" y2="9.546" transform="translate(9.248 67.03)"/>
+      <g id="组_181" data-name="组 181" transform="translate(165.454 117.387)">
+        <line id="直线_34" data-name="直线 34" class="cls-3" x2="9.546" transform="translate(0 4.773)"/>
+        <line id="直线_35" data-name="直线 35" class="cls-3" y2="9.546" transform="translate(4.773)"/>
+      </g>
+      <circle id="椭圆_58" data-name="椭圆 58" class="cls-4" cx="2.983" cy="2.983" r="2.983" transform="translate(126.999 12.714)"/>
+      <path id="路径_57" data-name="路径 57" class="cls-5" d="M195.4,476.623s13.126,9.546,23.865,8.353" transform="translate(-195.4 -440.468)"/>
+      <path id="路径_58" data-name="路径 58" class="cls-5" d="M261.028,461.111s4.773-9.546,9.546-3.58-4.643,4.372-5.967,2.387c-2.386-3.58-10.739-17.9,13.126-19.092s22.671,3.58,17.9,8.353,11.933,7.159,22.672,7.159" transform="translate(-195.459 -440.641)"/>
+      <g id="组_182" data-name="组 182" transform="translate(27.423 24.05)">
+        <path id="路径_59" data-name="路径 59" class="cls-4" d="M222.844,483.782s4.773,0,9.546-11.932,19.092-1.193,20.285,0c.844.844,4.773,13.126-8.353,17.9s-21.478-5.967-21.478-5.967" transform="translate(-222.844 -464.691)"/>
+        <path id="路径_60" data-name="路径 60" class="cls-4" d="M237.163,467.077s8.353,11.933,10.739,11.933,4.773-7.16,4.773-7.16" transform="translate(-222.844 -464.691)"/>
+        <path id="路径_61" data-name="路径 61" class="cls-4" d="M230.063,476.966s4.616,11.348,17.43,2.336a.153.153,0,0,1,.242.166c-.743,2-3.852,9.891-6.983,11.185" transform="translate(-222.844 -464.691)"/>
+        <path id="路径_62" data-name="路径 62" class="cls-4" d="M237.233,482.7S235.1,490.52,232,490" transform="translate(-222.844 -464.691)"/>
+        <path id="路径_63" data-name="路径 63" class="cls-4" d="M252.675,471.85s4.773-1.193,5.966-7.159" transform="translate(-222.844 -464.691)"/>
+      </g>
+      <path id="路径_64" data-name="路径 64" class="cls-6" d="M278.926,524.054" transform="translate(-195.451 -440.262)"/>
+      <path id="路径_65" data-name="路径 65" class="cls-7" d="M230.6,596.543l-3.1-10.03,100.576.509-3.214,10.714H230.6Z" transform="translate(-195.446 -439.895)"/>
+      <path id="路径_66" data-name="路径 66" class="cls-8" d="M256.851,524.949l-.176.507-13.458,38.87h14.014l6.779,13.126h26.251l7.159-13.126,15.952-.629-14.759-38.748H256.851l-13.126,38.183" transform="translate(-195.449 -440.078)"/>
+      <path id="路径_67" data-name="路径 67" class="cls-1" d="M335,564l-37,1-8,12-26,1-6-14-37.138,1.148S231.519,597.684,231,599s94,0,94,0Z" transform="translate(-195.4 -439.895)"/>
+      <path id="路径_68" data-name="路径 68" class="cls-9" d="M315.32,518.983l20.285,44.15-10.739,35.8H230.6l-9.546-34.6L248.5,503.471h27.444" transform="translate(-195.4 -439.895)"/>
+      <path id="路径_69" data-name="路径 69" class="cls-9" d="M221.054,564.326h36.99l5.966,13.126h26.251l7.159-13.126h37.825" transform="translate(-195.4 -440.03)"/>
+      <line id="直线_36" data-name="直线 36" class="cls-9" x2="12.483" y2="35.657" transform="translate(105.641 88.538)"/>
+      <line id="直线_37" data-name="直线 37" class="cls-10" x1="13.126" y2="38.183" transform="translate(48.294 84.807)"/>
+      <path id="路径_70" data-name="路径 70" class="cls-10" d="M299.836,525.031" transform="translate(-195.464 -440.258)"/>
+      <path id="路径_71" data-name="路径 71" class="cls-9" d="M256.851,524.949l-.176.507-13.458,38.87h14.014l6.779,13.126h26.251l7.159-13.126h16.705l-13.343-36.589" transform="translate(-195.449 -440.078)"/>
+      <line id="直线_38" data-name="直线 38" class="cls-9" x1="41.763" transform="translate(61.402 84.691)"/>
+      <line id="直线_39" data-name="直线 39" class="cls-9" x2="0.253" y2="0.44" transform="translate(61.161 84.251)"/>
+      <line id="直线_40" data-name="直线 40" class="cls-9" x2="6.563" y2="21.039" transform="translate(54.6 63.157)"/>
+      <line id="直线_41" data-name="直线 41" class="cls-11" x1="41.763" transform="translate(61.402 84.691)"/>
+      <path id="路径_72" data-name="路径 72" class="cls-12" d="M308.093,518.088l-8.261,11.138a.205.205,0,0,1-.369-.131V518.088h-9.752c-7.572,0-13.768-6.444-13.768-14.319v-3.58c0-7.875,6.2-14.318,13.768-14.318h32.126c7.572,0,13.768,6.443,13.768,14.318v3.58c0,7.875-6.2,14.319-13.768,14.319H308.093Z" transform="translate(-195.474 -440.361)"/>
+      <g id="组_183" data-name="组 183" transform="translate(94.006 58.441)">
+        <circle id="椭圆_59" data-name="椭圆 59" class="cls-4" cx="3.172" cy="3.172" r="3.172"/>
+        <circle id="椭圆_60" data-name="椭圆 60" class="cls-4" cx="3.172" cy="3.172" r="3.172" transform="translate(13.126)"/>
+        <circle id="椭圆_61" data-name="椭圆 61" class="cls-4" cx="3.172" cy="3.172" r="3.172" transform="translate(26.251)"/>
+      </g>
+    </g>
+  </g>
+</svg>

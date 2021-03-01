@@ -1,0 +1,8 @@
+<view class="tui-content-box">
+	<view class="logo">
+		<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/logo%403x.png" class="image"></image>
+	</view>
+	<view class="name">{{name}}</view>
+	<view class="version">v{{version}}</view>
+	<view class="desc">{{desc}}</view>
+</view>

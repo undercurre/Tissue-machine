@@ -1,0 +1,58 @@
+<view class="all" >
+  <view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+	<view class="status" style="height:{{statusHeight}}px"></view>
+	<view class="comment" style="height: {{commentHeight}}px">
+		<view class="FlexBox"
+			style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+			<view class="backButton" bindtap="backIndex">
+				<image src="/static/images/backButton.svg" class="backButtonImage" mode="scaleToFill"></image>
+			</view>
+			<view class="mainTitle" style="margin-left: {{textLeft}}px;"></view>
+		</view>
+	</view>
+</view>
+  <view class="Image">
+    <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/machinestatusBgZpq3x.png" style="width:100%" mode="scaleToFill"></image>
+    <view class="centerPic">
+      <!-- 电量不足 -->
+      <view wx:if="{{machineInfo.status === 6}}">
+        <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/insufficientElectricity20210111.png" style="width:86%" mode="aspectFit"></image>
+      </view>
+      <!-- 纸巾不足 -->
+      <view wx:elif="{{machineInfo.status === 5}}">
+        <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/insufficientTissue%403x.png" style="width:85%" mode="aspectFit"></image>
+      </view>
+      <!-- 设备正在使用中 -->
+      <view wx:elif="{{machineInfo.isUsed ===1}}">
+        <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/equipmentOccupate%403x.png" style="width:85%" mode="aspectFit"></image>
+      </view>
+      <view wx:else>
+        <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/machineStatusMiddleZpq3x.png" style="width:85%" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+  <view class="Txt" style="top:{{TxtBoxTop}}px" hidden="{{hasbottom}}">
+    <view wx:if="{{machineInfo.status === 6}}">
+      <view class="machineError" style="color:red">电量不足!</view>
+      <view class="mark">亲很抱歉，当前设备电量不足，去附近设备看看吧</view>
+    </view>
+    <view wx:elif="{{machineInfo.status === 5}}">
+      <view class="machineError">空空如也！</view>
+      <view class="mark">亲很抱歉，当前设备纸巾领完啦，去附近设备看看吧</view>
+    </view>
+    <view wx:elif="{{machineInfo.isUsed ===1}}">
+      <view class="machineError">设备使用中！</view>
+      <view class="mark">亲很抱歉，当前设备正在使用中，请稍后...</view>
+    </view>
+    <view wx:else>
+      <view class="machineError">设备维护中</view>
+      <view class="mark">亲很抱歉，当前设备维护中，去附近设备看看吧</view>
+    </view>
+  </view>
+  <view wx:if="{{machineInfo.isUsed ===1}}" class="BtnPosition">
+    <button class="button" bindtap="GoToIndex">返回首页</button>
+  </view>
+  <view wx:else class="BtnPosition">
+    <button class="button" bindtap="gotoNearMachine">附近设备</button>
+  </view>
+</view>

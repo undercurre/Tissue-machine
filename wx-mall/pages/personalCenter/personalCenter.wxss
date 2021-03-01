@@ -1,0 +1,206 @@
+/* 个人中心 */
+/* 头像栏 */
+.subframe {
+  display: flex;
+  justify-content: space-between;
+  height: 290rpx;
+  padding: 0 8%;
+  align-items: center;
+  background-image: url("https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/personalcenter_background.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+}
+.subframeOfHeigheruUser{
+  display: flex;
+  justify-content: space-between;
+  height: 290rpx;
+  padding: 0 8%;
+  align-items: center;
+  background-image: url("https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/bguserHeighter3x.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+}
+
+.userImageAnduserNumber {
+  display: flex;
+  padding-bottom: 20rpx;
+}
+.no-login {
+  display: flex;
+}
+.no-login .userImage {
+  background-color: #fff;
+  border-radius: 100%;
+  width: 120rpx;
+  height: 120rpx;
+}
+.no-login .userImage image{
+  width: 56rpx;
+  height: 56rpx;
+  margin: 32rpx 0 0 32rpx;
+}
+.no-login .userNumber {
+  margin: 30rpx 0 0 16rpx;
+  font-size: 40rpx;
+}
+.has-login {
+  display: flex;
+}
+.has-login .userImage {
+  background-color: #fff;
+  border-radius: 100%;
+  width: 120rpx;
+  height: 120rpx;
+}
+.userNumber {
+  font-size: 30rpx;
+  color: #fff;
+}
+
+.setButton {
+  width: 75rpx;
+  height: 75rpx;
+  padding-bottom: 20rpx;
+}
+
+/* 我的钱包、订单、卡券 */
+.myFunction {
+  display: flex;
+  justify-content: space-between;
+  margin: 4rpx 8% 80rpx 8%;
+}
+
+.my {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 186rpx;
+}
+
+.myFunctionPhoto {
+  width: 128rpx;
+  height: 128rpx;
+}
+.myFunction .my .myFunctionTitle{
+  font-size: 24rpx;
+  color: #141616;
+  height: 34rpx;
+  width: 96rpx;
+}
+
+/* 功能栏 */
+.functionBar {
+  display: flex;
+  justify-content: space-between;
+  margin: 50rpx 5.6% 50rpx 4%;/* 兴趣调查与我的纸巾上下间距25pt */
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.title {
+  color: #141616;
+  width: 120rpx;
+  height: 42rpx;
+  font-size: 30rpx;
+}
+
+.tip {
+  font-size: 26rpx;
+  color:#939393;
+  margin-right: 12rpx;
+}
+
+.icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.rightArrow {
+  width: 40rpx;
+  height: 32rpx;
+}
+
+/* 宣传栏 */
+.bulletinBoard {
+  margin: 20rpx 5.6% 0 5.6% ;/*20rpx是模拟器中上下无塌陷，否则原本为70rpx */
+  width: 666rpx;
+  height: 320rpx;
+  border-radius: 8pt;
+}
+
+.numberTip{
+  background-color: red;
+  width: 34rpx;
+  height: 34rpx;
+  line-height: 36rpx;
+  text-align: center;
+  color: white;
+  font-size: 24rpx;
+  border-radius: 50%;
+  margin-right: 40rpx;
+}
+
+.userDetail{
+  color: #fff;
+  margin-left: 16rpx;
+}
+
+.userName{
+  font-size: 30rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+}
+
+.userLevel{
+  display: flex;
+  align-items: center;
+  margin-top: 40rpx;
+ /*  width: 172rpx; */
+ width: 160rpx;
+  height: 46rpx;
+  background-color: white;
+  border-radius: 24rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  color: #75808F;
+  padding: 5rpx 10rpx;
+}
+.userLevel .FlexBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 39rpx;/* 普通会员的图标的上下位置可通过这里的height调整 */
+}
+
+.userLevel .userLevelTxt{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 96rpx;
+  height: 34rpx;
+  font-size: 24rpx;
+  color: #75808F;
+  margin-left: 6rpx
+}
+.userLevel image{
+  width: 31rpx;
+  height: 24.5rpx;
+  /* margin-right: 12rpx; */
+  margin-left: 5rpx;
+
+}

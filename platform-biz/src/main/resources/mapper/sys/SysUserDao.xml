@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysUserDao">
+
+	<!-- 查询用户的所有权限 -->
+	<select id="queryAllPerms" resultType="string">
+		SELECT M.PERMS FROM SYS_USER_ROLE UR
+			LEFT JOIN SYS_ROLE_MENU RM ON UR.ROLE_ID = RM.ROLE_ID
+			LEFT JOIN SYS_MENU M ON RM.MENU_ID = M.MENU_ID
+		WHERE UR.USER_ID = #{userId}
+	</select>
+
+	<!-- 查询员工的所有权限 -->
+	<select id="queryAllStaffPerms" resultType="string">
+		SELECT
+		M.PERMS
+		FROM SYS_USER T
+		LEFT JOIN SYS_STAFF_MENU S ON T.USER_ID = S.STAFF_ID
+		LEFT JOIN SYS_MENU M ON S.MENU_ID = M.MENU_ID
+		WHERE T.USER_ID = #{userId}
+	</select>
+
+	<!-- 查询用户的所有菜单ID -->
+	<select id="queryAllMenuId" resultType="string">
+		SELECT DISTINCT A.MENU_ID,A.ORDER_NUM FROM SYS_USER_ROLE UR
+		RIGHT JOIN SYS_ROLE_MENU RM ON UR.ROLE_ID = RM.ROLE_ID
+		RIGHT JOIN SYS_MENU A ON A.MENU_ID = RM.MENU_ID
+		WHERE 1=1
+		<if test="params.userId != null">
+			AND UR.USER_ID = #{params.userId}
+		</if>
+		AND RM.MENU_TYPE = #{params.menuType}
+		ORDER BY A.MENU_ID, A.ORDER_NUM
+	</select>
+
+	<select id="selectListPage" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		SELECT
+		 T.USER_ID,
+		 T.SEX,
+		 T.REAL_NAME,
+		 T.USER_NAME,
+		 T.ORG_NO,
+		 T.EMAIL_HOST,
+		 T.EMAIL,
+		 T.EMAIL_PW,
+		 T.MOBILE,
+		 T.STATUS,
+		 T.CREATE_TIME,
+		 T.CREATE_USER_ID,
+		 T.CREATE_USER_ORG_NO,
+		 T.MP_OPEN_ID,
+		 T.BALANCE,
+		 T.IS_STAFF
+		 FROM SYS_USER T
+		WHERE T.IS_STAFF = 0
+		<if test="params.userName != null and params.userName != ''">
+			AND T.USER_NAME LIKE '%${params.userName}%'
+		</if>
+		<if test="params.orgNo != null and params.orgNo != ''">
+			AND T.ORG_NO = #{params.orgNo}
+		</if>
+	</select>
+
+	<select id="selectStaffByCreateUserId" parameterType="String" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		SELECT T.USER_ID, T.SEX, T.REAL_NAME, T.USER_NAME, T.ORG_NO, T.EMAIL_HOST, T.EMAIL, T.EMAIL_PW, T.MOBILE, T.STATUS, T.CREATE_TIME,T.CREATE_USER_ID,T.CREATE_USER_ORG_NO FROM SYS_USER T
+		WHERE T.CREATE_USER_ID = #{createUserId} AND T.IS_STAFF = 1
+		<if test="params.userName != null and params.userName != ''">
+			AND T.USER_NAME LIKE '%${params.userName}%'
+		</if>
+	</select>
+
+	<select id="isStaff" parameterType="String" resultType="Integer">
+		SELECT
+		IS_STAFF
+		FROM SYS_USER
+		WHERE USER_ID = #{id}
+	</select>
+
+
+	<select id="getUserLevel" resultType="Integer">
+		SELECT
+		MIN(R.LEVEL)
+		FROM SYS_USER U
+		LEFT JOIN SYS_USER_ROLE UR ON U.USER_ID = UR.USER_ID
+		LEFT JOIN SYS_ROLE R ON R.ROLE_ID = UR.ROLE_ID
+		WHERE U.USER_ID = #{userId}
+	</select>
+
+	<select id="queryById" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		SELECT
+		T.USER_ID,
+		T.USER_NAME,
+		T.REAL_NAME,
+		T.SEX,
+		T.ORG_NO,
+		T.SALT,
+		T.EMAIL_HOST,
+		T.EMAIL,
+		T.EMAIL_PW,
+		T.MOBILE,
+		T.STATUS,
+		T.PASSWORD,
+		T.CREATE_USER_ID,
+		T.CREATE_USER_ORG_NO,
+		T.CREATE_TIME,
+		T.MP_OPEN_ID,
+		T.BALANCE,
+		T.IS_STAFF
+		FROM SYS_USER T
+		WHERE 1=1
+		AND T.USER_ID = #{userId}
+	</select>
+
+	<select id="getRoleNameByUserId" resultType="string">
+		SELECT
+		R.ROLE_NAME
+		FROM SYS_USER U
+		LEFT JOIN SYS_USER_ROLE UR ON U.USER_ID = UR.USER_ID
+		LEFT JOIN SYS_ROLE R ON R.ROLE_ID = UR.ROLE_ID
+		WHERE U.USER_ID = #{userId}
+	</select>
+</mapper>

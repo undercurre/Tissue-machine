@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdMachineGroupDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.GROUP_ID,
+        T.MACHINE_ID,
+        T.CREATE_TIME
+        FROM AD_MACHINE_GROUP T
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+    </sql>
+
+    <select id="selectAdMachineGroupPage" resultType="com.platform.modules.ad.entity.AdMachineGroupEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdMachineGroupEntity">
+        <include refid="selectSql"/>
+    </select>
+    <select id="getMachineByGroupId" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.SERVER_URL,
+        T.IS_DELETE,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.IS_OPEN_LOCATE,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.SERVER_URL,
+        T.ORDER_FAIL_COUNT,
+        T.IS_USED,
+        T.LIGHT_STATUS,
+        T.USED_FLOW,
+        T.CONTENT,
+        G.ID AS MACHINE_GROUP_ID,
+        T.AGENT_ID
+        FROM AD_MACHINE_GROUP G
+        LEFT JOIN AD_TISSUE_MACHINE T ON G.MACHINE_ID = T.ID
+        WHERE G.GROUP_ID = #{params.id}
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME like '%${params.name}%'
+        </if>
+    </select>
+</mapper>

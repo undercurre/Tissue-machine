@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdTissueMachineDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.IS_DELETE,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.SERVER_URL,
+        T.IS_OPEN_LOCATE,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.ELECTRICITY_QUANTITY,
+        T.ORDER_FAIL_COUNT,
+        T.LIGHT_STATUS,
+        T.IS_USED,
+        T.USED_FLOW,
+        T.CONTENT,
+        T.AGENT_ID
+        FROM AD_TISSUE_MACHINE T
+        WHERE 1=1
+        <if test="params.status != null and params.status.trim() != ''" >
+            AND T.STATUS = #{params.status}
+        </if>
+        <if test="params.isCheckFlow != null and params.isCheckFlow.trim() != '' and params.isCheckFlow == 0" >
+            AND T.USED_FLOW  <![CDATA[ <= ]]>  #{params.simMonthData}
+        </if>
+        <if test="params.isCheckFlow != null and params.isCheckFlow.trim() != '' and params.isCheckFlow == 1" >
+            AND T.USED_FLOW  <![CDATA[ >= ]]>  #{params.simMonthData}
+        </if>
+        <if test="params.isDelete != null and params.isDelete.trim() != ''">
+            AND T.IS_DELETE = #{params.isDelete}
+        </if>
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        ORDER BY T.STATUS DESC, T.CREATE_TIME DESC
+    </sql>
+
+    <select id="selectAdTissueMachinePage" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="getAll" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.IS_DELETE,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.IS_OPEN_LOCATE,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.ELECTRICITY_QUANTITY,
+        T.ORDER_FAIL_COUNT,
+        T.IS_USED,
+        T.LIGHT_STATUS,
+        T.USED_FLOW,
+        T.CONTENT,
+        T.SERVER_URL
+        FROM AD_TISSUE_MACHINE T
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        <if test="params.status != null and params.status.trim() != ''">
+            AND T.STATUS = #{params.status}
+        </if>
+        <if test="params.isDelete != null and params.isDelete.trim() != ''">
+            AND T.IS_DELETE = #{params.isDelete}
+        </if>
+        <if test="params.isCheckFlow != null and params.isCheckFlow.trim() != '' and params.isCheckFlow == 0" >
+            AND T.USED_FLOW  <![CDATA[ <= ]]>  #{params.simMonthData}
+        </if>
+        <if test="params.isCheckFlow != null and params.isCheckFlow.trim() != '' and params.isCheckFlow == 1" >
+            AND T.USED_FLOW  <![CDATA[ >= ]]>  #{params.simMonthData}
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+
+    <select id="getById" parameterType="String" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.SERVER_URL,
+        T.IS_DELETE,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.IS_OPEN_LOCATE,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.SERVER_URL,
+        T.ELECTRICITY_QUANTITY,
+        T.ORDER_FAIL_COUNT,
+        T.IS_USED,
+        T.LIGHT_STATUS,
+        T.USED_FLOW,
+        T.CONTENT,
+        T.AGENT_ID
+        FROM AD_TISSUE_MACHINE T
+        WHERE T.ID = #{id}
+    </select>
+
+    <select id="getBySn" parameterType="String" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.IS_OPEN_LOCATE,
+        T.SERVER_URL,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.IS_DELETE,
+        T.ELECTRICITY_QUANTITY,
+        T.ORDER_FAIL_COUNT,
+        T.IS_USED,
+        T.LIGHT_STATUS,
+        T.USED_FLOW,
+        T.CONTENT,
+        T.AGENT_ID
+        FROM AD_TISSUE_MACHINE T
+        WHERE T.SN = #{sn}
+    </select>
+    <select id="queryNoVoiceList" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.IS_DELETE,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.SERVER_URL,
+        T.IS_OPEN_LOCATE,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.ORDER_FAIL_COUNT,
+        T.IS_USED,
+        T.LIGHT_STATUS,
+        T.USED_FLOW,
+        T.CONTENT,
+        T.AGENT_ID
+        FROM AD_TISSUE_MACHINE T
+    </select>
+
+    <update id="updateDetailById" parameterType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        UPDATE AD_TISSUE_MACHINE T
+        SET
+        T.SN = #{sn},
+        T.NAME = #{name},
+        T.STATUS = #{status},
+        T.LONGITUDE = #{longitude},
+        T.LATITUDE = #{latitude},
+        T.MACHINE_IMAGE = #{machineImage},
+        T.MACHINE_LOGO =#{machineLogo},
+        T.IS_SHOW_LOGO =#{isShowLogo},
+        T.ADDRESS = #{address},
+        T.WORK_TIME = #{workTime},
+        T.TISSUE_NUMBER = #{tissueNumber},
+        T.CREATE_TIME = #{createTime},
+        T.UPDATE_TIME = #{updateTime},
+        T.REMARK = #{remark},
+        T.IS_OPEN_LOCATE = #{isOpenLocate},
+        T.IS_DELETE = #{isDelete},
+        T.ORDER_FAIL_COUNT = #{orderFailCount},
+        T.AGENT_ID = #{agentId},
+        T.REPORT_LONGITUDE = #{reportLongitude},
+        T.REPORT_LATITUDE = #{reportLatitude},
+        T.PROVINCE_CODE = #{provinceCode},
+        T.CITY_CODE = #{cityCode},
+        T.DISTRICT_CODE = #{districtCode},
+        T.PROVINCE = #{province},
+        T.CITY = #{city},
+        T.DISTRICT = #{district}
+        WHERE T.ID = #{id}
+    </update>
+
+    <update id="updateStatus" parameterType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        UPDATE AD_TISSUE_MACHINE T
+        SET T.STATUS = #{status}
+        <if test="status == 1">
+        ,T.ORDER_FAIL_COUNT = 0
+        </if>
+        WHERE T.ID = #{id}
+    </update>
+
+    <update id="updateIsDelete" parameterType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        UPDATE AD_TISSUE_MACHINE T
+        SET T.IS_DELETE = #{isDelete}
+        WHERE T.ID = #{id}
+    </update>
+    <update id="updateIsShowLogo" parameterType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        UPDATE AD_TISSUE_MACHINE T
+        SET T.IS_SHOW_LOGO = #{isShowLogo}
+        WHERE T.ID = #{id}
+    </update>
+    <update id="updateIsOpenLocate" parameterType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        UPDATE AD_TISSUE_MACHINE T
+        SET T.IS_OPEN_LOCATE = #{isOpenLocate}
+        WHERE T.ID = #{id}
+    </update>
+
+    <select id="queryMachineListBySupId" resultType="com.platform.modules.ad.entity.AdTissueMachineEntity">
+        SELECT
+        T.ID,
+        T.SN,
+        T.NAME,
+        T.STATUS,
+        T.LONGITUDE,
+        T.LATITUDE,
+        T.MACHINE_IMAGE,
+        T.MACHINE_LOGO,
+        T.IS_SHOW_LOGO,
+        T.ADDRESS,
+        T.WORK_TIME,
+        T.TISSUE_NUMBER,
+        T.CREATE_TIME,
+        T.UPDATE_TIME,
+        T.REMARK,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.SERVER_URL,
+        T.IS_DELETE,
+        T.MACHINE_VERSION,
+        T.SIM_CCID,
+        T.IS_OPEN_LOCATE,
+        T.REPORT_LONGITUDE,
+        T.REPORT_LATITUDE,
+        T.SERVER_URL,
+        T.ORDER_FAIL_COUNT,
+        T.IS_USED,
+        T.LIGHT_STATUS,
+        T.USED_FLOW,
+        T.CONTENT,
+        T.AGENT_ID
+        FROM AD_TISSUE_MACHINE T
+        LEFT JOIN AD_MACHINE_VOICE V ON V.MACHINE_ID = T.ID
+        WHERE V.SUPERIORID = #{params.id}
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME like '%${params.name}%'
+        </if>
+
+    </select>
+
+    <select id="groupByTissueMachineInCity" resultType="com.platform.modules.vo.RegionSortVo">
+        SELECT
+        T.CITY AS REGION_NAME,
+        COUNT(1) AS NUMBER
+        FROM AD_TISSUE_MACHINE T
+        GROUP BY T.CITY
+        ORDER BY NUMBER DESC
+    </select>
+
+    <select id="groupByTissueMachineInDistrict" resultType="com.platform.modules.vo.RegionSortVo">
+        SELECT
+        T.DISTRICT AS REGION_NAME,
+        COUNT(1) AS NUMBER
+        FROM AD_TISSUE_MACHINE T
+        GROUP BY T.DISTRICT
+        ORDER BY NUMBER DESC
+    </select>
+
+
+</mapper>

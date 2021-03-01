@@ -1,0 +1,35 @@
+<!-- 优惠券不为空 -->
+<view class="tapTab">
+  <view wx:for="{{tabList}}" wx:key="index" id="nav-{{index}}" class="sort {{index == select ? 'choose' : ''}}"
+    data-index='{{index}}' bindtap="activeTab">
+    {{item.name}}（{{item.number}}）
+    <view class="line" wx:if="{{index == select}}"></view>
+  </view>
+  <view wx:if="{{couponList.length > 0}}" class="couponListCon">
+    <view class="coupon {{item.status == 1 ? 'couponRightWarning' : ''}}" wx:for="{{couponList}}" id="{{item.id}}">
+      <view class="couponLeft">
+        <view class="couponLeftTop">
+          <view class="couponLeftTopText" wx:if="{{item.minPrice == 0}}">无门槛使用</view>
+          <view class="couponLeftTopText" wx:elif="{{item.minPrice > 0}}">支付{{item.minPrice}}元以上可用</view>
+        </view>
+        <view class="couponLeftBottom">
+          使用期限:{{item.beginTime}}-{{item.endTime}}
+        </view>
+      </view>
+      <view class="couponRight {{item.status == 2 ? 'couponRightFail' : 'couponRightSuccess'}}">
+        <view class="couponRightTop" wx:if="{{item.couponType == 1}}">￥{{item.subPrice}}</view>
+        <view class="couponRightTop" wx:else>{{item.discount}}折</view>
+        <view class="couponRightBottom" wx:if="{{item.status == 0}}" bindtap="toIndex">去使用</view>
+        <view class="couponRightBottom" wx:if="{{item.status == 1}}">已使用</view>
+        <view class="couponRightBottom" wx:if="{{item.status == 2}}">已过期</view>
+      </view>
+    </view>
+  </view>
+  <!-- 优惠券为空 -->
+  <view class="blankContent" wx:else>
+    <view>
+      <image class="blankContentImage" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/myCoupon%403x.png">
+      </image>
+    </view>
+  </view>
+</view>

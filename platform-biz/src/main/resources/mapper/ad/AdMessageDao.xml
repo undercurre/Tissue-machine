@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdMessageDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.CONTENT,
+        T.USER_ID,
+        T.ORDER_ID,
+        T.HAD_READ,
+        T.CREATE_TIME,
+        T.IS_DELETE
+        FROM AD_MESSAGE T
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+    </sql>
+
+    <select id="selectAdMessagePage" resultType="com.platform.modules.ad.entity.AdMessageEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdMessageEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="getMessageListByUserId" parameterType="String" resultType="com.platform.modules.ad.entity.AdMessageEntity">
+        SELECT
+        T.CONTENT,
+        T.CREATE_TIME
+        FROM AD_MESSAGE T
+        WHERE T.USER_ID = #{id}
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+    <select id="getAllList" resultType="com.platform.modules.ad.entity.AdMessageEntity">
+        SELECT
+        T.ID,
+        T.CONTENT,
+        T.USER_ID,
+        T.ORDER_ID,
+        T.HAD_READ,
+        O.ORDER_SN,
+        T.CREATE_TIME,
+        T.IS_DELETE
+        FROM AD_MESSAGE T
+        LEFT JOIN AD_ORDER O ON T.ORDER_ID = O.ID
+        WHERE 1=1 AND T.USER_ID = #{userId}
+        ORDER BY T.CREATE_TIME DESC
+    </select>
+</mapper>

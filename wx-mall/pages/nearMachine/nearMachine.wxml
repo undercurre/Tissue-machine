@@ -1,0 +1,67 @@
+<view class="pageIndex">
+	<view wx:for="{{TissueMachineList}}" data-id="{{item.id}}" bindtap="goMachineDetail">
+		<!-- 机器详情 -->
+		<view class="machine_detail">
+			<!-- 上半部分 -->
+			<view class="machine_detail_top">
+				<!-- 图片 -->
+				<view>
+					<image class="machine_image" data-id="{{item.id}}" src="{{item.machineImage}}"></image>
+				</view>
+				<!-- 详情 -->
+				<view class="middle">
+					<!-- 店名、距离 -->
+					<view class="subFrameTop">
+						<view class="machine_name" data-id="{{item.id}}">{{item.name}}</view>
+						<view class="machine_scan_text" wx:if="{{item.distance}}>=1000">{{item.distance/1000}}km</view>
+						<view class="machine_scan_text" wx:else>{{item.distance}}m</view>
+					</view>
+					<!-- 营业时间、地址 -->
+					<view class="machine_detail_center">
+						<view class="machine_detail_center_left">
+							<!-- 营业时间 -->
+							<view class="machine_address">
+								<view>
+									<image class="icon" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/workTime.png">
+									</image>
+								</view>
+								<view>{{item.workTime}}</view>
+							</view>
+							<!-- 店铺地址 -->
+							<view class="machine_address">
+								<view>
+									<image class="icon" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/workPlace.png">
+									</image>
+								</view>
+								<view class="addressDetail">{{item.address}}</view>
+							</view>
+						</view>
+					</view>
+				</view>
+			</view>
+			<!-- 下半部分：设备剩余xx包纸巾 -->
+			<view class="machine_detail_bottom" data-id="{{item.id}}">
+				<view class="BigBoxbwt">
+					<view class="machine_stock_con">
+						<view class="machine_stock">
+							<view>
+								<text class="text_size">设备剩余</text>
+							</view>
+						</view>
+						<view class="red">
+							<view>
+								<text class="text_size"> {{item.tissueNumber}}</text>
+							</view>
+						</view>
+						<view class="machine_stock">
+							<view>
+								<text class="text_size"> 包纸巾</text>
+							</view>
+						</view>
+					</view>
+					<!-- </view> -->
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

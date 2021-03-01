@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdUserCouponDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.USER_ID,
+        T.COUPON_ID,
+        T.ADD_TIME,
+        T.TYPE,
+        T.STATUS,
+        T.USED_TIME,
+        T.ORDER_ID
+        FROM AD_USER_COUPON T
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        <if test="params.status != null">
+            AND T.STATUS = #{params.status}
+        </if>
+    </sql>
+
+    <select id="selectAdUserCouponPage" resultType="com.platform.modules.ad.entity.AdUserCouponEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdUserCouponEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="selectAllByStatus" resultType="com.platform.modules.ad.entity.AdUserCouponEntity">
+        SELECT
+        T.ID,
+        T.USER_ID,
+        T.COUPON_ID,
+        T.ADD_TIME,
+        T.TYPE,
+        T.STATUS,
+        T.USED_TIME,
+        T.ORDER_ID,
+        C.MIN_PRICE,
+        C.SUB_PRICE,
+        C.BEGIN_TIME,
+        C.END_TIME,
+        C.COUPON_TYPE,
+        C.DISCOUNT
+        FROM AD_USER_COUPON T
+        LEFT JOIN AD_COUPON C ON C.ID = T.COUPON_ID
+        WHERE 1=1
+        AND T.USER_ID = #{userId}
+        AND T.STATUS = #{status}
+    </select>
+</mapper>

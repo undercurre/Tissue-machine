@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdMachineLightDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.MACHINE_SN,
+        T.START_TIME,
+        T.END_TIME,
+        M.ID AS MACHINE_ID,
+        M.NAME AS MACHINE_NAME
+        FROM AD_MACHINE_LIGHT T
+        LEFT JOIN AD_TISSUE_MACHINE M ON M.SN = T.MACHINE_SN
+        WHERE 1=1
+        <if test="params.machineSn != null and params.machineSn.trim() != ''">
+            AND T.MACHINE_SN = #{params.machineSn}
+        </if>
+    </sql>
+
+    <select id="selectAdMachineLightPage" resultType="com.platform.modules.ad.entity.AdMachineLightEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdMachineLightEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

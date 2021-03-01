@@ -1,0 +1,600 @@
+page {
+  background-repeat: no-repeat;
+  background-size: 100% 1624rpx;
+  -moz-background-size: 100% 100%;
+  background-image: url(https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/backgroundZpq.png);
+}
+
+/* 背景图标“文明佛山” */
+.AJCC {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.logoView {
+  width: 100%;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 280rpx;
+}
+
+.logo {
+  width: 142px;
+  height: 140px;
+}
+
+/* 顶部 */
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.top .status {
+  width: 100%;
+}
+
+.top .comment {
+  width: 100%;
+}
+
+.top .comment .FlexBox {
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+  margin-bottom: 12rpx;
+}
+
+.top .comment .FlexBox .backButton {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.backButtonImage {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.mainTitle {
+  color: #fff;
+  font-size: 17px;
+}
+
+.blank {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 信息栏 */
+.infoFrameA {
+  padding: 0 5%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 750rpx;
+  height: 950rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-image: url(https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/InfoFrameA3xZpqV2.png);
+}
+
+.infoFrameB {
+  padding: 0 5%;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  width: 750rpx;
+  height: 950rpx;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-image: url(https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/InfoFrameB3xZpq.png);
+}
+
+/* “免费纸巾”、“购买纸巾” */
+.tissueStatus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90vw;
+  height: 155rpx;
+}
+
+.buttonA {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  /* 培强添加的代码 */
+  height: 80rpx;
+  align-content: center;
+  justify-content: center;
+}
+
+.buttonASubTitle {
+  position: fixed;
+  left: 262rpx;
+}
+
+.buttonASubTitleDetail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row-reverse;
+  /* background-color: #DF8D26; */
+  background: linear-gradient(to right, #FF9700, #FF6200, #E85000);
+  /* background: linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1)) */
+  color: #fff;
+  padding: 10rpx;
+  border-radius: 30rpx;
+  font-size: 16rpx;
+  height: 26rpx;
+  width: 99rpx;
+}
+
+.buttonAMaintitleA {
+  font-size: 31rpx;
+  color: #082F40;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonAMaintitleB {
+  font-size: 31rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.getDisabledButton {
+  color: #FF0000;
+  border-radius: 20rpx;
+  padding: 5rpx 15rpx;
+}
+
+
+
+.buttonB {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: 80rpx;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonBSubTitle {
+  height: 30rpx;
+  width: 115rpx;
+}
+
+.buttonBMaintitleA {
+  font-size: 31rpx;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+}
+
+.buttonBMaintitleB {
+  font-size: 31rpx;
+  color: #082F40;
+  display: flex;
+  justify-content: center;
+}
+
+/* 设备剩余xx包纸巾 */
+.tipSurplus {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: baseline;
+  height: 26rpx;
+  position: relative;
+  top: -20rpx;
+  right: 10rpx;
+  font-size: 20rpx;
+  color: #082F40;
+}
+
+.num {
+  color: #FF3366;
+  font-size: 20rpx;
+}
+
+.infoFrameA .FlexBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.infoFrameB .FlexBox {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 16rpx;
+}
+
+.infoFrameA .FlexBox .swiperClass {
+  width: 388rpx;
+  height: 324rpx;
+}
+
+.infoFrameB .FlexBox .swiperClass {
+  width: 388rpx;
+  height: 324rpx;
+  /*  border-style: dotted;
+  border-color: #707070;
+  border-width: 2rpx; */
+}
+
+/* 纸巾图片 */
+.tissueImage {
+  width: 388rpx;
+  height: 324rpx;
+  border-radius: 10rpx;
+  display: flex;
+  justify-content: center;
+  color: #FF3366
+}
+
+/* 提示 */
+.tipA {
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  color: #333333;
+  font-size: 30rpx;
+}
+
+.tipB {
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: center;
+  color: #333333;
+  font-size: 30rpx;
+}
+
+/* 状态提醒 */
+.statusRemindA {
+  margin-bottom: 90rpx;
+  display: flex;
+  justify-content: center;
+  color: #FD5959;
+  font-size: 24rpx;
+}
+
+.statusRemindB {
+  margin-bottom: 90rpx;
+  display: flex;
+  justify-content: center;
+  color: #FD5959;
+  font-size: 24rpx;
+}
+
+.tissuePhoto {
+  width: 388rpx;
+  height: 324rpx;
+}
+
+/* 按钮 */
+.submitButtonA {
+  font-size: 34rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95rpx;
+  width: 76%;
+  margin: 0 12%;
+  color: #fff;
+  background-color: #082F40;
+  border-radius: 53rpx;
+}
+
+.submitButtonB {
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95rpx;
+  width: 76%;
+  margin: 0 12%;
+  color: #fff;
+  background-color: #1CAC19;
+  border-radius: 53rpx;
+}
+
+.submitButtonC {
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95rpx;
+  width: 76%;
+  margin: 0 12%;
+  color: #666666;
+  background-color: #CCCCCC;
+  border-radius: 53rpx;
+}
+.submitButtonD {
+  font-size: 32rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 95rpx;
+  width: 76%;
+  margin: 0 12%;
+  color: #666666;
+  background-color: #CCCCCC;
+  border-radius: 53rpx;
+}
+.pop {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+}
+
+.pop .Bao {
+  position: absolute;
+  margin-left: 529rpx;
+  margin-top: 666rpx;
+  z-index: 100000;
+  color: black;
+  width: 32rpx;
+  height: 44rpx;
+  font-size: 32rpx;
+}
+
+.pop .cover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: 0.8;
+  z-index: 999;
+}
+
+/* .pop .content {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 574rpx;
+  margin-left: 88rpx;
+  margin-top: 476rpx;
+  z-index: 99999;
+} */
+.pop .content {
+  position: absolute;
+  left: 0;
+  top: 23vh;
+  width: 100%;
+  height: 77vh;
+  margin: 0;
+  z-index: 1000;
+}
+
+.pop .content .message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.pop .content .message .popTitle {
+  margin: 30rpx 30rpx 0;
+}
+
+.pop .content .message .popTitle .purchaseCount {
+  color: #333333;
+  font-size: 32rpx;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+
+.pop .content .message .popTitle .leftToBuy {
+  color: #FD5959;
+  font-size: 24rpx;
+  vertical-align: bottom;
+  height: 44rpx;
+  line-height: 44rpx;
+}
+.pop .content .message .popTitle .noShow{
+  width: 34rpx;
+  height: 34rpx;
+  float: right;
+}
+.pop .content .message .numberBox{
+  display: flex;
+    justify-content: center;
+    margin: 34rpx 0 0 0;
+}
+.pop .content .message .line{
+  margin: 40rpx 30rpx 0;
+  background-color: #CCCCCC;
+  height: 2rpx;
+}
+.pop .content .message .chooseTxt{
+  margin: 34rpx 0 0 30rpx;
+  font-size: 32rpx;
+  color: #333;
+  font-weight:bold;
+}
+.pop .content .message .chooseVolume{
+  margin: 36rpx 30rpx 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pop .content .message .chooseVolume .left{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pop .content .message .chooseVolume .left .img{
+  width: 36rpx;
+  height: 36rpx;
+}
+.pop .content .message .chooseVolume .left .txt{
+  font-size: 30rpx;
+  color: #333;
+  margin-left: 26rpx;
+}
+.pop .content .message .chooseVolume .right{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pop .content .message .chooseVolume .right .hasVolume{
+  color: #ffffff;
+  font-size: 24rpx;
+  background-color: #FD5959;
+  padding: 2rpx 18rpx;
+  margin-right: 30rpx;
+  border-radius: 8rpx;
+}
+.pop .content .message .chooseVolume .right .hasChoose{
+  font-size: 30rpx;
+  color: #FD5959;
+  margin-right: 30rpx;
+}
+.pop .content .message .chooseVolume .right .go{
+  width: 16rpx;
+  height: 36rpx;
+}
+.pop .content .message .payWayTxt{
+  margin: 34rpx 0 0 30rpx;
+  font-size: 32rpx;
+  color: #333;
+  font-weight:bold;
+}
+.pop .content .message .payBalance{
+  margin: 44rpx 0 0 30rpx;
+  display: flex;
+    align-items: center;
+}
+.pop .content .message .payBalance .img{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 30rpx;
+}
+.pop .content .message .payBalance .balanceTxt{
+  font-size: 30rpx;
+  color: #333;
+}
+.pop .content .message .payBalance .leftOfBalance{
+  font-size: 25rpx;
+  color: #333;
+  margin-left: 10rpx;
+}
+.pop .content .message .payBalance .toDeduction{
+  font-size: 30rpx;
+  color: #FD5959;
+  margin-left: auto;
+    margin-right: 30rpx;
+}
+.pop .content .message .weChatPay{
+  margin: 52rpx 0 0 30rpx;
+  display: flex;
+    align-items: center;
+}
+.pop .content .message .weChatPay .img{
+  width: 34rpx;
+  height: 30rpx;
+  margin-right: 30rpx;
+}
+.pop .content .message .weChatPay .txt{
+  font-size: 30rpx;
+  color: #333;
+}
+.pop .content .message .realPay{
+  margin: 56rpx 0 34rpx;
+}
+.pop .content .message .realPay .money{
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 80rpx;
+  color: #333;
+}
+.pop .content .message .realPay .txt{
+  width: fit-content;
+  margin: 14rpx auto 0;
+  font-size: 20rpx;
+  color: #333;
+}
+/* .pop .content .message {
+  width: 100%;
+  background-color: #fff;
+  height: 460rpx;
+  border-radius: 20rpx;
+} */
+
+.pop .content .close {
+  margin-top: 72rpx;
+  width: 100%;
+  text-align: center;
+  z-index: 99999;
+}
+
+.pop .content .close image {
+  width: 84rpx;
+  height: 84rpx;
+}
+
+/* .popTitle {
+  padding: 50rpx;
+  display: flex;
+  justify-content: center;
+} */
+
+.popButtonWeChat {
+  font-size: 32rpx;
+  text-align: center;
+  height: 96rpx;
+  line-height: 96rpx;
+  margin:34rpx 70rpx 0;
+  color: #fff;
+  background-color: #1CAC19;
+  border-radius: 50rpx;
+}
+.popButtonComfirm{
+  font-size: 32rpx;
+  text-align: center;
+  height: 96rpx;
+  line-height: 96rpx;
+  margin:34rpx 70rpx 0;
+  color: #fff;
+  background-color: #082F40;
+  border-radius: 50rpx;
+}
+/* 优惠卷弹窗 */
+.toSelect{
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #fff;
+  z-index: 10001;
+}
+.toSelect .top .comment .FlexBox .mainTitle {
+  color: #141616;
+  font-size: 34rpx;
+}
+/* .numberBox {
+  display: flex;
+  justify-content: center;
+  margin: 30rpx 0 70rpx 0;
+} */

@@ -1,0 +1,18 @@
+@import 'reset';
+@import 'common';
+// px 转 rem
+$fontSize: 37.5;
+
+@function px2rem($px) {
+  @return ($px / $fontSize)+rem;
+}
+
+@mixin center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+$color: #06c1ae;
+
+// 1个rem = 100px

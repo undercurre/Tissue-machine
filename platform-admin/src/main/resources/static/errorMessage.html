@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>提示</title>
+</head>
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+    }
+    .Content{
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0,0,0,0.6);
+        position: relative;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .pop{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 85vw;
+        height: 20vh;
+        background-color: #f3f3f3;
+        border-radius: 30px;
+    }
+    .pop .msg{
+        font-size: 73px;
+        color: #000;
+    }
+
+</style>
+<body>
+ <div class="Content">
+   <div class="pop">
+       <div class="msg">
+           您没有权限查看!
+       </div>
+   </div>
+ </div>
+</body>
+</html>

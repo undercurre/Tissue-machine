@@ -1,0 +1,37 @@
+<!--pages/myTissue/myTissue.wxml-->
+<!-- 顶部 不同机型：1px={{rate}}rpx，rpx可让系统自适应-->
+<view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+  <view class="status" style="height:{{statusHeight}}px"></view>
+  <view class="comment" style="height: {{commentHeight}}px">
+    <view class="FlexBox"
+      style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+      <view class="backButton" bindtap="backIndex">
+        <image src="/static/images/backButton.svg" class="backButtonImage"></image>
+      </view>
+      <view class="mainTitle" style="margin-left: {{textLeft}}px;">我的纸巾</view>
+    </view>
+  </view>
+</view>
+<view class="pageBG">
+  <view class="BackGround">
+    <!-- 余额文本 -->
+    <view class="balanceBox">
+      <view class="mark"> 剩余纸巾（包）</view>
+      <view class="count">{{nowTissue}}</view>
+    </view>
+  </view>
+  <!-- 覆盖紫色区域的白色部分,白色区域与余额的margin可改js的marginTopOfWhite-->
+  <view class="whiteSpace">
+    <view class="gettingRecord" bindtap="getrecord">
+      <span class="txt">领取记录</span>
+      <view>
+        <image class="img" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Forward3xZpq.png"
+        mode="scaleToFill"></image>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="btnGroup">
+      <button class="nearBy" bindtap="goToNearMachine">附近设备</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="scan-ad">
+　<image src='{{imageUrl}}' mode='aspectFill'></image>
+ <!--  <view class="countdown" wx:if="{{!isJump}}">跳过({{count + "s"}})</view>
+  <view wx:else class="countdown" bindtap="jump">跳过({{count + "s"}})</view> -->
+  <view class="countdown" wx:if="{{isShow === 1}}" bindtap="jump" style="left: {{btnleft}}px;line-height:{{btnHeight}}px;height:{{btnHeight}}px;width:{{btnWidth}}px;top: 11.5vh;">跳过({{count + "s"}})</view>
+</view>

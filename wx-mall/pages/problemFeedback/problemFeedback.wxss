@@ -1,0 +1,100 @@
+page {
+  margin: 0 3%;
+}
+
+.title {
+  font-size: 28rpx;
+  display: flex;
+  margin: 5% 0;
+}
+
+.asterisk {
+  color: red;
+  margin-top: 1rpx;
+  font-size: 41rpx;
+
+}
+
+.input {
+  background-color: #f4f4f4;
+  width: 94%;
+  border-radius: 3%;
+}
+
+.content {
+  padding: 20rpx 10rpx;
+  width: 100%;
+}
+
+.wordsReminder {
+  color: grey;
+  display: flex;
+  flex-direction: row-reverse;
+  margin-top: 5%;
+  margin-right: 7%;
+}
+
+.tip {
+  color: grey;
+  margin: 5% 0;
+}
+
+.upload {
+  border-radius: 10rpx;
+  width: 150rpx;
+  height: 150rpx;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadPhoto {
+  display: inline-block;
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #f4f4f4;
+  border-radius: 3%;
+  overflow: hidden;
+}
+
+.uploadIcon {
+  width: 48rpx;
+  height: 36rpx;
+  color: #ffffff;
+  border-radius: 3%;
+}
+
+/*  提交按钮:未输入内容时  */
+.submitButton {
+  position: fixed;
+  bottom: 70rpx;
+  display: flex;
+  justify-content: center;
+  background-color: #CCCCCC;
+  width: 94%;
+  padding: 34rpx;
+  border-radius: 10rpx;
+}
+
+.submitButtonTitle {
+  font-size: 36rpx;
+  color: #666666;
+}
+
+/* 提交按钮:已输入内容时 */
+.submitButtonA {
+  position: fixed;
+  bottom: 70rpx;
+  display: flex;
+  justify-content: center;
+  background-color: #082F40;
+  width: 94%;
+  padding: 34rpx;
+  border-radius: 10rpx;
+}
+
+.submitButtonTitleA {
+  font-size: 36rpx;
+  color: #FFFFFF;
+}

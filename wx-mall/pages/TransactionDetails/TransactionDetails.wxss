@@ -1,0 +1,64 @@
+/* pages/TransactionDetails/TransactionDetails.wxss */
+Page {
+  background-color: #F4F4F4;
+}
+
+.transaction_item {
+  width: 690rpx;
+  height: 140rpx;
+  margin: 30rpx;
+  padding: 24rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+}
+
+.transaction_item .transaction_top {
+  display: flex;
+  justify-content: space-between;
+  height: 42rpx;
+  line-height: 42rpx;
+  margin: 0 0 24rpx 0;
+}
+
+.transaction_item .transaction_top .transaction_num {
+  font-size: 27rpx;
+}
+
+.transaction_item .transaction_top .transaction_price {
+  font-weight: 700;
+  font-size: 30rpx;
+}
+
+.transaction_item .transaction_bottom {
+  display: flex;
+  justify-content: space-between;
+  height: 34rpx;
+  line-height: 34rpx;
+  margin: 24rpx 0;
+}
+
+.transaction_item .transaction_bottom .transaction_time {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.transaction_item .transaction_bottom .transaction_mode_a {
+  font-size: 24rpx;
+  color: #29C78F;
+}
+
+.transaction_item .transaction_bottom .transaction_mode_b {
+  font-size: 24rpx;
+  color: #FF9700;
+}
+.blankContentImage {
+  width: 480rpx;
+  height: 270rpx;
+}
+/* 消息为空 */
+.blankContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50%;
+}

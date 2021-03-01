@@ -1,0 +1,38 @@
+{
+  "name": "water-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@nutui/nutui": "^2.2.12",
+    "axios": "^0.21.0",
+    "core-js": "^2.6.5",
+    "element-ui": "^2.11.1",
+    "moment": "^2.29.1",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.1.0",
+    "vue": "^2.6.12",
+    "vue-amap": "^0.5.10",
+    "vue-axios": "^2.1.5",
+    "vue-cookie": "^1.1.4",
+    "vue-cookies": "^1.7.4",
+    "vue-loader": "^15.9.5",
+    "vue-preview": "^1.1.3",
+    "vue-router": "^3.0.3",
+    "vue-template-compiler": "^2.6.12",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.0",
+    "@vue/cli-service": "^3.9.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "vue-template-compiler": "^2.6.12"
+  }
+}

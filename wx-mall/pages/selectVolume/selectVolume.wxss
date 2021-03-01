@@ -1,0 +1,88 @@
+
+page{
+  background-color: #F4F4F4;
+}
+.content{
+  background-color: #F4F4F4;
+  height: fit-content;
+}
+.couponListCon{
+  width: 100%;
+  padding-top: 15rpx;
+}
+
+.coupon{
+  width: 92%;
+  height: 220rpx;
+  margin-left: 4%;
+  margin-top: 30rpx;
+  border-radius: 14rpx;
+  background-color: #FFF;
+}
+
+.couponLeft{
+  display: inline-block;
+  width: 71%;
+  height: 100%;
+  vertical-align: top;
+}
+
+.couponLeftTop{
+  margin-top: 60rpx;
+  margin-left: 34rpx;
+}
+
+.couponLeftTopText{
+  color: #000;
+  height: 44rpx;
+  font-weight: bold;
+  font-size: 32rpx;
+  line-height: 50rpx;
+}
+
+.couponLeftBottom{
+  font-size: 20rpx;
+  color: #000;
+  line-height: 24rpx;
+  margin-left: 34rpx;
+  margin-top: 44rpx;
+}
+
+.couponRight{
+  display: inline-block;
+  width: 29%;
+  height: 100%;
+  vertical-align: top;
+  text-align: center;
+}
+
+.couponRightSuccess{
+  background: url("https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/couponSuccess%403x.png");
+}
+
+.couponRightWarning{
+  opacity: 0.5;
+}
+
+.couponRightFail{
+  background: url("https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/couponFail%403x.png");
+}
+
+.couponRightTop{
+  font-size: 56rpx;
+  color: #FFF;
+  margin-top: 20rpx;
+  height: 130rpx;
+  line-height: 130rpx;
+}
+
+.couponRightBottom{
+  font-size: 24rpx;
+  color: #FFF;
+  border: 2rpx solid #FFF;
+  width: 132rpx;
+  height: 40rpx;
+  border-radius: 60rpx;
+  margin-left: 36rpx;
+  line-height: 40rpx;
+}

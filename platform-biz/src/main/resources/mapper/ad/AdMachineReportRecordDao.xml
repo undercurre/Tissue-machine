@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdMachineReportRecordDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.MACHINE_SN,
+        T.REPORT_TIME,
+        T.CONTENT
+        FROM AD_MACHINE_REPORT_RECORD T
+        WHERE
+        T.MACHINE_SN = #{params.sn}
+        AND
+        T.REPORT_TIME <![CDATA[ >= ]]> #{params.time}
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        ORDER BY T.MACHINE_SN,T.REPORT_TIME DESC
+    </sql>
+
+    <select id="selectAdMachineReportRecordPage" resultType="com.platform.modules.ad.entity.AdMachineReportRecordEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdMachineReportRecordEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

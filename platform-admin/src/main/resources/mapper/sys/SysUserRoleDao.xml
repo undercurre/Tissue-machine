@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysUserRoleDao">
+
+	<delete id="deleteBatch">
+		DELETE FROM SYS_USER_ROLE WHERE ROLE_ID IN
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+	<select id="queryRoleIdList" resultType="string">
+		SELECT ROLE_ID FROM SYS_USER_ROLE WHERE USER_ID = #{value}
+	</select>
+
+	<select id="queryRoleList" resultType="com.platform.modules.sys.entity.SysRoleEntity">
+		SELECT
+		R.ROLE_NAME,
+		R.ROLE_ID
+		FROM SYS_USER_ROLE UR
+		LEFT JOIN SYS_ROLE R ON R.ROLE_ID = UR.ROLE_ID
+		WHERE USER_ID = #{value}
+	</select>
+
+	<select id="queryAllWorker" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		SELECT
+		DISTINCT
+		T.USER_ID,
+		T.REAL_NAME
+		FROM SYS_USER T
+		LEFT JOIN SYS_USER_ROLE UR ON UR.USER_ID = T.USER_ID
+		LEFT JOIN SYS_ROLE R ON UR.ROLE_ID = R.ROLE_ID
+		LEFT JOIN SYS_USER_DEPARTMENT D ON D.USER_ID = T.USER_ID
+		WHERE R.ROLE_NAME = '运维人员' AND D.DEPARTMENT_ID IN (SELECT DEPARTMENT_ID FROM SYS_USER_DEPARTMENT WHERE USER_ID = #{userId})
+	</select>
+
+	<select id="isWorker" resultType="Integer">
+		SELECT
+		count(1)
+		FROM SYS_USER T
+		LEFT JOIN SYS_USER_ROLE UR ON UR.USER_ID = T.USER_ID
+		LEFT JOIN SYS_ROLE R ON UR.ROLE_ID = R.ROLE_ID
+		WHERE R.ROLE_NAME = '运维人员' AND T.USER_ID = #{id}
+	</select>
+
+	<select id="isWorkerManager" resultType="Integer">
+		SELECT
+		count(1)
+		FROM SYS_USER T
+		LEFT JOIN SYS_USER_ROLE UR ON UR.USER_ID = T.USER_ID
+		LEFT JOIN SYS_ROLE R ON UR.ROLE_ID = R.ROLE_ID
+		WHERE R.ROLE_NAME = '运维经理' AND T.USER_ID = #{id}
+	</select>
+
+	<select id="queryAgentList" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		SELECT
+		DISTINCT
+		U.USER_ID,
+		U.REAL_NAME
+		FROM SYS_USER U
+		LEFT JOIN SYS_USER_ROLE UR ON U.USER_ID = UR.USER_ID
+		LEFT JOIN SYS_ROLE R ON R.ROLE_ID = UR.ROLE_ID
+		WHERE (R.LEVEL = 1 OR 2) AND U.IS_STAFF = 0
+	</select>
+</mapper>

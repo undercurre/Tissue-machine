@@ -1,0 +1,17 @@
+<view>
+  <view class="tapTab">
+    <scroll-view scroll-x="true" scroll-with-animation="true" scroll-into-view="nav-{{select > 0 ? select-1 : select}}">
+      <view wx:for="{{tabList}}" wx:key="index" id="nav-{{index}}"
+        class="sort {{index == select ? 'choose' : ''}}" data-index='{{index}}' bindtap="activeTab">{{item.name}}
+        <view class="line" wx:if="{{index == select}}"></view>
+      </view>
+    </scroll-view>
+  </view>
+  <swiper current="{{select}}" duration="300" bindchange="activeSw">
+  <swiper-item wx:for="{{tabList.length}}" wx:key="index">
+    <view class="box">
+      <view class="place" wx:for="{{placeList}}" wx:key="index">{{index}}</view>
+    </view>
+  </swiper-item>
+</swiper>
+</view>

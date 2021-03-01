@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.MallUserLevelDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.NAME,
+        T.IMAGE_URL,
+        T.DESCRIPTION,
+        T.LEVEL,
+        T.INTEGRAL,
+        T.ACTIVITY_ID
+        FROM MALL_USER_LEVEL T
+        WHERE 1=1
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+    </sql>
+
+    <select id="selectMallUserLevelPage" resultType="com.platform.modules.ad.entity.MallUserLevelEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.MallUserLevelEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="getActivityIdAndPriceByLevelName" parameterType="String" resultType="com.platform.modules.ad.entity.MallUserLevelEntity">
+        SELECT
+        T.ACTIVITY_ID,
+        A.PRICE
+        FROM MALL_USER_LEVEL T
+        LEFT JOIN AD_ACTIVITY A ON A.ID = T.ACTIVITY_ID
+        WHERE T.NAME = #{name}
+    </select>
+</mapper>

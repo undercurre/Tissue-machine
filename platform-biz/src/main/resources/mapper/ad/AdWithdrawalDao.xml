@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdWithdrawalDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.USER_BANK_ID,
+        T.AMOUNT,
+        T.COMMISSION,
+        T.STATUS,
+        T.CREATE_TIME,
+        T.FINISH_TIME,
+        T.HANDLER_ID,
+        B.BANK_NAME,
+        B.BANK_NO,
+        U.REAL_NAME,
+        B.USER_NAME
+        FROM AD_WITHDRAWAL T
+        LEFT JOIN AD_USER_BANK B ON B.ID = T.USER_BANK_ID
+        LEFT JOIN SYS_USER U ON  U.USER_ID = T.HANDLER_ID
+        WHERE 1 = 1
+        <if test="params.status != null and params.status.trim() != ''">
+            AND T.STATUS = #{params.status}
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </sql>
+
+    <select id="selectAdWithdrawalPage" resultType="com.platform.modules.ad.entity.AdWithdrawalEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdWithdrawalEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="getLastestCard" resultType="com.platform.modules.ad.entity.AdWithdrawalEntity">
+        SELECT
+        T.USER_BANK_ID
+        FROM AD_WITHDRAWAL T
+        LEFT JOIN AD_USER_BANK B ON T.USER_BANK_ID = B.ID
+        WHERE B.USER_ID = #{userId}
+        ORDER BY T.CREATE_TIME DESC
+        LIMIT 1
+    </select>
+
+    <select id="getDetailById" resultType="com.platform.modules.ad.entity.AdWithdrawalEntity">
+        SELECT
+        T.ID,
+        T.USER_BANK_ID,
+        T.AMOUNT,
+        T.COMMISSION,
+        T.STATUS,
+        T.CREATE_TIME,
+        T.FINISH_TIME,
+        T.HANDLER_ID,
+        B.BANK_NAME,
+        B.BANK_NO,
+        U.REAL_NAME,
+        B.USER_NAME,
+        B.MOBILE
+        FROM AD_WITHDRAWAL T
+        LEFT JOIN AD_USER_BANK B ON B.ID = T.USER_BANK_ID
+        LEFT JOIN SYS_USER U ON U.USER_ID = T.HANDLER_ID
+        WHERE T.ID = #{id}
+    </select>
+</mapper>

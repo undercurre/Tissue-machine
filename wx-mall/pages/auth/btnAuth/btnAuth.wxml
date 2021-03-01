@@ -1,0 +1,18 @@
+<view class="page">
+	<!-- LOGO -->
+	<view class="hd">
+		<image class="logo" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/logo%403x.png"></image>
+		<view class="title">便民公益纸巾</view>
+	</view>
+	<!-- 登录 -->
+	<view class="btns">
+		<!-- 需要使用 button 来授权登录 -->
+		<button class="btn_primary" wx:if="{{canIUse}}" open-type="getUserInfo"
+			bindgetuserinfo="bindGetUserInfo">
+			<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/weChatLogo.png" class="weChatLogo"></image>
+			微信一键登录</button>
+		<view class="btn" wx:else>请升级微信版本</view>
+		<view bindtap="goLogin" class="goLogin">手机号登录</view>
+	</view>
+</view>
+<view class="bottom">乐晟科技 提供技术支持</view>

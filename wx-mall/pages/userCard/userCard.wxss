@@ -1,0 +1,206 @@
+/* 顶部 */
+.top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.top .status {
+  width: 100%;
+}
+
+.top .comment {
+  width: 100%;
+}
+
+.top .comment .FlexBox {
+  display: flex;
+  align-items: center;
+  margin-left: 30rpx;
+  margin-bottom: 12rpx;
+}
+
+.top .comment .FlexBox .backButton {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.backButtonImage {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.mainTitle {
+  color: #fff;
+  font-size: 17px;
+}
+
+.blank {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.backgroudImg{
+  position: absolute;
+  width: 100%;
+  height: 420rpx;
+  background-image: url("https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/bg%403x.png");
+  background-size: 100%;
+}
+
+.cardCon{
+  position: absolute;
+  width: 92%;
+  height: 420rpx;
+  margin-left: 4%;
+  background-image: url("https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/card%403x.png");
+  background-size: 100%;
+  top: 232rpx;
+  z-index: 999;
+}
+
+.priceCon{
+  position: absolute;
+  top: 32rpx;
+  right: 0;
+  width: 162rpx;
+  height: 68rpx;
+  color: #fff;
+  background-color: rgba(226, 74, 40, 1);
+  border-radius: 36rpx 0 0 36rpx;
+  line-height: 68rpx;
+  text-align: center;
+}
+
+.priceConLeft{
+  display: inline-block;
+  font-size: 34rpx;
+}
+
+.priceConRight{
+  display: inline-block;
+  font-size: 50rpx;
+  margin-left: -6rpx;
+}
+
+.vipText{
+  font-size: 60rpx;
+}
+
+.titleCon{
+  position: absolute;
+  top: 132rpx;
+  left: 40rpx;
+  font-size: 40rpx;
+  color: #FFF;
+  line-height: 56rpx;
+}
+
+.descCon{
+  position: absolute;
+  top: 218rpx;
+  left: 40rpx;
+  width: 68%;
+  color: #FFF;
+  font-size: 24rpx;
+}
+
+.number{
+  display: inline-block;
+  font-size: 50rpx;
+}
+
+.buyButton{
+  position: absolute;
+  top: 316rpx;
+  left: 40rpx;
+  width: 172rpx;
+  height: 46rpx;
+  line-height: 46rpx;
+  text-align: center;
+  border-radius: 24rpx;
+  font-size: 24rpx;
+  color: rgba(255,93,62,1);
+  background-color: #FFF;
+}
+
+.buyButtonBottom{
+  position: absolute;
+  bottom: 100rpx;
+  left: 9%;
+  width: 82%;
+  height: 96rpx;
+  background-color: rgba(8, 47, 64, 1);
+  border-radius: 60rpx;
+  text-align: center;
+  line-height: 96rpx;
+  font-size: 30rpx;
+  color: #FFF;
+}
+/* 弹窗 */
+.popContent{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.popContent .cover{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  padding: 25vh 0 0;
+}
+.popContent .pop{
+  width: 80%;
+  position: absolute;
+  z-index: 1001;
+  left: 14%;
+  top:30%;
+}
+
+
+.popContent .modelPop {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  max-width: 90%;
+  width: auto;
+  margin-left: 8%;
+  height: 300px;
+  position: relative;
+}
+.popContent .modelPop .txt{
+  font-size: 30rpx;
+  color: #333;
+  position: absolute;
+  z-index: 1002;
+  top: 37%;
+  left: 50%;
+  width: fit-content;
+}
+.popContent .modelPop .txt text{
+  position: relative;
+  left: -62%;
+}
+.popContent .modelPop .txt .count{
+  font-size: 56rpx;
+  color: #FF784F;
+}
+.popContent .modelPop .closeLogo{
+  width: 101rpx;
+  height: 101rpx;
+  position: absolute;
+  z-index: 1002;
+  bottom: 15px;
+  left: 50%;
+  margin: 0 0 0 -85rpx;
+  padding: 0;
+}

@@ -1,0 +1,56 @@
+<!-- 出货成功:status == 2 -->
+<view wx:if="{{status == 2}}">
+	<!-- 上部图片 -->
+	<view class="top">
+		<image class="image" src="/static/images/successShipment.svg" mode="widthFix"></image>
+	</view>
+	<!-- 出货状态提示 -->
+	<view class="tipSuccess">
+		出货成功
+	</view>
+	<!-- 按钮 -->
+	<view class="button">
+		<view class="buttonLeft" bindtap="navToBuyAgain">再次购买</view>
+		<view class="buttonRight" bindtap="navToProblemFeedback">问题反馈</view>
+	</view>
+</view>
+
+<!-- 出货失败:status == 3 -->
+<view wx:if="{{orderType==1 && (status == 3 || status == 0)}}">
+  <!-- 上部图片 -->
+  <view class="top">
+    <image class="image" src="/static/images/failShipment.svg" mode="widthFix"></image>
+  </view>
+  <!-- 出货状态提示 -->
+  <view class="tipFail">
+      <text class="tipFailTitle">{{shipmentNumber}}/{{number}}</text>
+    <text class="tipFailTitle">出货失败</text>
+    <text decode="true" class="tipFailDetail">
+      亲很抱歉，当前设备离线啦，系统会将货款原路返回
+      请留意退款信息，如需纸巾可去附近设备看看</text>
+  </view>
+  <!-- 按钮 -->
+  <view class="button">
+    <view class="buttonLeft" bindtap="navToBuyAgain">再次购买</view>
+    <view class="buttonRight" bindtap="navToNearMachine">附近设备</view>
+  </view>
+</view>
+<!-- 出货失败:status == 3 -->
+<view wx:if="{{orderType==2 && (status == 3 || status == 0)}}">
+  <!-- 上部图片 -->
+  <view class="top">
+    <image class="image" src="/static/images/failShipment.svg" mode="widthFix"></image>
+  </view>
+  <!-- 出货状态提示 -->
+  <view class="tipFail">
+      <text class="tipFailTitle">{{shipmentNumber}}/{{number}}</text>
+    <text class="tipFailTitle">领取失败</text>
+    <text decode="true" class="tipFailDetail">
+      亲很抱歉，当前设备离线啦，去附近设备看看吧</text>
+  </view>
+  <!-- 按钮 -->
+  <view class="button">
+    <view class="buttonLeft" bindtap="navToBuyAgain">再试一次</view>
+    <view class="buttonRight" bindtap="navToNearMachine">附近设备</view>
+  </view>
+</view>

@@ -1,0 +1,25 @@
+<view class="content">
+<view class="couponListCon">
+  <view class="coupon {{item.status == 1 ? 'couponRightWarning' : ''}}" wx:for="{{couponList}}" id="{{item.id}}" bindtap="choose" 
+  data-volumId="{{item.couponId}}" data-couponType="{{item.couponType}}"
+  data-discount="{{item.discount}}" data-subprice="{{item.subPrice}}"
+  >
+    <view class="couponLeft">
+      <view class="couponLeftTop">
+        <view class="couponLeftTopText" wx:if="{{item.minPrice == 0}}">无门槛使用</view>
+        <view class="couponLeftTopText" wx:elif="{{item.minPrice > 0}}">支付{{item.minPrice}}元以上可用</view>
+      </view>
+      <view class="couponLeftBottom">
+        使用期限:{{item.beginTime}}-{{item.endTime}}
+      </view>
+    </view>
+    <view class="couponRight {{item.status == 2 ? 'couponRightFail' : 'couponRightSuccess'}}">
+      <view class="couponRightTop" wx:if="{{item.couponType == 1}}">￥{{item.subPrice}}</view>
+      <view class="couponRightTop" wx:else>{{item.discount}}折</view>
+      <view class="couponRightBottom" wx:if="{{item.status == 0}}">去使用</view>
+      <view class="couponRightBottom" wx:if="{{item.status == 1}}">已使用</view>
+      <view class="couponRightBottom" wx:if="{{item.status == 2}}">已过期</view>
+    </view>
+  </view>
+</view>
+</view>

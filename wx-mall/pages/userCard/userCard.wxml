@@ -1,0 +1,72 @@
+<!-- 顶部 不同机型：1px={{rate}}rpx，rpx可让系统自适应-->
+<view class="backgroudImg"></view>
+
+<view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+	<view class="status" style="height:{{statusHeight}}px"></view>
+	<view class="comment" style="height: {{commentHeight}}px">
+		<view class="FlexBox"
+			style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+			<view class="backButton" bindtap="goBack">
+				<image src="/static/images/backButton.svg" class="backButtonImage"></image>
+			</view>
+			<view class="mainTitle" style="margin-left: {{textLeft}}px;">会员卡</view>
+		</view>
+	</view>
+</view>
+
+<view class="cardCon">
+
+	<view class="priceCon" wx:if="{{userLevel == 1}}">
+		<view class="priceConLeft">￥</view>
+		<view class="priceConRight">{{price}}</view>
+	</view>
+
+	<view class="priceCon" wx:elif="{{userLevel == 2}}">
+		<view class="vipText">VIP</view>
+	</view>
+
+	<view class="titleCon">
+		便民纸巾VIP
+	</view>
+
+	<view class="descCon" wx:if="{{userLevel == 1}}">
+		激活会员卡立即赠送<view class="number">{{number}}</view>包纸巾!
+	</view>
+
+	<view class="descCon" wx:elif="{{userLevel == 2}}">
+		您的会员卡已激活,赠送{{number}}包纸巾到账成功查看附近设备,每天免费领取纸巾。
+	</view>
+
+
+	<view class="buyButton" bindtap="submitOrder" wx:if="{{userLevel == 1}}">
+		立即激活
+	</view>
+
+	<view class="buyButton" wx:elif="{{userLevel == 2}}">
+		已激活
+	</view>
+
+</view>
+
+<view class="buyButtonBottom" bindtap="submitOrder" wx:if="{{userLevel == 1}}">
+	激活会员卡
+</view>
+
+<view class="buyButtonBottom" bindtap="navToNearMachine" wx:elif="{{userLevel == 2}}">
+	附近设备
+</view>
+
+<view></view>
+
+
+<!-- 弹窗 -->
+<view class="popContent" hidden="{{showCover === 0}}">
+	<view  class="cover">
+		<view class="modelPop" style="background-image:url('https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/active3x(2).png')">
+			<view class="txt">
+				<text>赠送</text><text class="count">365</text><text>包纸巾余额已到账</text>
+			</view>
+			<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/closePop3x.png" class="closeLogo" mode="aspectFit" bindtap="closePop"></image>
+		</view>
+	</view>
+</view>

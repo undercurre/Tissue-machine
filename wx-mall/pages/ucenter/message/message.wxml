@@ -1,0 +1,31 @@
+<view class="message_list_box" wx:if="{{messageInfoList.length > 0}}">
+  <view class="message_box" wx:for="{{messageInfoList}}"  wx:key="orderId">
+    <view class="msgBoxContent">
+      <view class="BoxTop">
+        <view class="TopLeft">
+          <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/msgHadRead3x.png" mode="scaleToFill" class="Logo">
+          </image>
+          <view class="msgType">
+            系统通知
+          </view>
+        </view>
+        <view class="TopRight">
+          {{item.createTime}}
+        </view>
+      </view>
+      <view class="BoxCenter">
+        {{item.content}}
+      </view>
+      <view class="line"></view>
+      <view class="BoxBottom">
+        订单编号: {{item.orderSn}}
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 消息为空(messageContent==0) -->
+<view class="blankContent" wx:else>
+  <view>
+    <image class="blankContentImage" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/messageCenter%403x.png"></image>
+  </view>
+</view>

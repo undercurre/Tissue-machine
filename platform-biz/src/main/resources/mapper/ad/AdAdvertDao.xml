@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdAdvertDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T. NAME,
+        T.MOBILE,
+        T.WORKUNIT_TYPE,
+        T.WORKUNIT_NAME,
+        T. STATUS,
+        T.IS_DELETE,
+        T.USER_ID,
+        M.NICKNAME,
+        T.CREATE_TIME
+        FROM
+        AD_ADVERT T
+        LEFT JOIN MALL_USER M ON M.ID = T.USER_ID
+        WHERE 1=1
+        AND T.IS_DELETE = 0
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+        <if test="params.mobile != null and params.mobile.trim() != ''">
+            AND T.MOBILE = #{params.mobile}
+        </if>
+        <if test="params.workunitType != null and params.workunitType.trim() != ''">
+            AND T.WORKUNIT_TYPE = #{params.workunitType}
+        </if>
+        <if test="params.status != null and params.status.trim() != ''">
+            AND T.STATUS = #{params.status}
+        </if>
+        ORDER BY T.CREATE_TIME DESC
+    </sql>
+
+    <select id="selectAdAdvertPage" resultType="com.platform.modules.ad.entity.AdAdvertEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdAdvertEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

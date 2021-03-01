@@ -1,0 +1,74 @@
+<!-- 顶部 不同机型：1px={{rate}}rpx，rpx可让系统自适应-->
+<view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+  <view class="status" style="height:{{statusHeight}}px"></view>
+  <view class="comment" style="height: {{commentHeight}}px">
+    <view class="FlexBox"
+      style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+      <view class="backButton" bindtap="backIndex">
+        <image src="/static/images/backButton.svg" class="backButtonImage"></image>
+      </view>
+      <view class="mainTitle" style="margin-left: {{textLeft}}px;">我的钱包</view>
+    </view>
+  </view>
+</view>
+<view class="pageBG">
+  <view class="BackGround">
+    <!-- 余额文本 -->
+    <view class="balanceBox">
+      <view class="mark"> 余额（元）</view>
+      <view class="count">{{nowMoney}}</view>
+    </view>
+  </view>
+  <!-- 覆盖紫色区域的白色部分,白色区域与余额的margin可改js的marginTopOfWhite-->
+  <view class="whiteSpace">
+    <view class="transactionDetails" bindtap="transactiondetails">
+      <span class="txt">交易明细</span>
+      <view>
+        <image class="img" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Forward3xZpq.png"
+        mode="scaleToFill"></image>
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="paytxt" wx:if="{{canBalanceDeposit === 1}}">充值金额</view>
+    <view class="choice" wx:if="{{canBalanceDeposit === 1}}">
+      <button class="money" wx:for="{{dataList}}" wx:key="balance"
+      class="{{select === item.balance ? 'choose' : 'btn'}}"
+      data-money="{{item.balance}}"
+      data-realpay="{{item.needPrice}}"
+      data-id="{{item.id}}"
+      bindtap="choiceMoney"
+      >{{item.balance}}元</button> 
+    </view>
+    <view class="paytxt" wx:if="{{canBalanceDeposit === 1}}">支付方式</view>
+    <view class="payWay" wx:if="{{canBalanceDeposit === 1}}">
+      <view class="left">
+       <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/wechatpay3xZpq.png" class="wechat" mode="scaleToFill"></image>
+       <span class="txt">微信支付</span>
+      </view>
+      <view class="right">
+        <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/select3xZpq.png" mode="scaleToFill"
+        class="select"
+        ></image>
+      </view>
+    </view>
+    <view class="payMoney" wx:if="{{canBalanceDeposit === 1}}">
+      <view class="txtBox">
+        <view class="money">{{payMoney}}</view>
+        <view style="font-size:20rpx;color:#666666">（支付金额）</view>
+      </view>
+    </view>
+    <view class="btnGroup" wx:if="{{canBalanceDeposit === 1}}">
+      <view class="payNow" bindtap="submitSub">立即支付</view>
+      <view bindtap="toIndex" class="noLight">购买纸巾</view>
+    </view>
+    <view bindtap="toIndex" class="isLight" wx:if="{{canBalanceDeposit === 0}}">
+      购买纸巾
+    </view>
+  </view>
+</view>
+
+
+<!-- <view class="transactionDetails">
+    <span class="txt">交易明细</span>
+    <image class="img" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Forward3xZpq.png" mode="scaleToFill"></image>
+   </view> -->

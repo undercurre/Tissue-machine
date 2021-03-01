@@ -1,0 +1,74 @@
+<view class="{{item.orderType === 3||item.orderType === 4?'frame1':'frame2'}}" wx:if="{{orderList.length > 0 }}" wx:for="{{orderList}}" wx:key="orderSn">
+  <!-- 上部：订单状态、支付方式 -->
+  <view class="top">
+    <view class="orderStatus">
+          <view class="finishedOrFail" wx:if="{{item.shipmentStatus == 3}}">
+        <view>
+          <image class="failLogo" src="/static/images/orderFail.svg"></image>
+        </view>
+        <view class="failTitle">出货失败</view>
+      </view>
+      <view class="finishedOrFail" wx:else>
+        <view class="FlexBox">
+          <image class="finishedLogo" src="/static/images/orderFinish.svg"></image>
+        </view>
+        <view class="finishedTitle">订单完成</view>
+      </view>
+    </view>
+    <view wx:if="{{item.price == 0}}" class="paymentMethod">免费领取</view>
+    <view wx:if="{{item.price != 0}}" class="paymentMethod">消费：{{item.totalPrice}}元</view>
+  </view>
+  <!-- 中部：订单号、消费地点、消费时间、购买商品 -->
+  <view wx:if="{{item.orderType === 1 || item.orderType === 2}}" class="middle">
+    <view class="subFrame">
+      <view class="orderNumTitle">订单号</view>
+      <view class="orderNumDetail">{{item.orderSn}}</view>
+    </view>
+    <view class="subFrame">
+      <view class="consumptionPlaceTitle">消费地点</view>
+      <view class="consumptionPlaceDetail">{{item.machineName}}</view>
+    </view>
+    <view class="subFrame">
+      <view class="consumptionTimeTitle">消费时间</view>
+      <view class="consumptionTimeDetail" wx:if="{{item.payTime}}">{{item.payTime}}</view>
+      <view class="consumptionTimeDetail" wx:else>未支付</view>
+    </view>
+    <view class="subFrame">
+      <view class="buyGoodsTitle">购买商品</view>
+      <view class="buyGoodsDetail">{{item.keyValue}}</view>
+    </view>
+  </view>
+
+  <view wx:elif="{{item.orderType === 3 || item.orderType === 4}}" class="middle">
+    <view class="subFrame">
+      <view class="orderNumTitle">订单号</view>
+      <view class="orderNumDetail">{{item.orderSn}}</view>
+    </view>
+    <view class="subFrame">
+      <view class="consumptionTimeTitle">消费时间</view>
+      <view class="consumptionTimeDetail" wx:if="{{item.payTime}}">{{item.payTime}}</view>
+      <view class="consumptionTimeDetail" wx:else>未支付</view>
+    </view>
+    <view class="subFrame">
+      <view wx:if="{{item.orderType === 3}}" class="buyGoodsTitle">激活会员</view>
+      <view wx:elif="{{item.orderType === 4}}" class="buyGoodsTitle">充值金额</view>
+      <view wx:if="{{item.orderType === 3}}" class="buyGoodsDetail">{{item.actualPrice}}元</view>
+      <view wx:elif="{{item.orderType === 4}}" class="buyGoodsDetail">{{item.rechargeBalance}}元</view>
+    </view>
+  </view>
+  <!-- 下部：（已退款）、删除按钮 -->
+  <view class="bottom">
+    <view>
+      <view class="refunded"></view>
+      <view class="refunded" wx:if="{{item.fromType == 2 && item.price != 0}}">已退款</view>
+    </view>
+    <view class="deleteButton" bindtap="deleteOrder" data-orderid="{{item.id}}">
+      <image src="/static/images/delete.svg" class="delete"></image>
+    </view>
+  </view>
+</view>
+<view  class="blankContent" wx:if="{{orderList.length ==0}}">
+  <view>
+    <image class="blankContentImage" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/myOrderEmpty%403x.png"></image>
+  </view>
+</view>

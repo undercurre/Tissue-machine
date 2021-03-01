@@ -1,0 +1,93 @@
+<view class="totalFrame">
+  <!-- 个人中心 -->
+  <!-- 头像栏 -->
+  <view class="{{userlevel === 2 ? 'subframeOfHeigheruUser' : 'subframe'}}">
+    <view class="userImageAnduserNumber">
+      <view wx:if="{{!userInfo}}" class="no-login" bindtap="login">
+        <view class="userImage">
+          <image src="/static/images/tissue.svg"></image>
+        </view>
+        <view class="userNumber" bindtap="">登陆/注册</view>
+      </view>
+      <view wx:if="{{userInfo}}" class="has-login">
+        <image class="userImage" src="{{userInfo.headImgUrl}}"></image>
+        <view class="userDetail">
+          <view class="userName">{{userInfo.userName}}</view>
+          <view class="userLevel">
+            <view class="FlexBox">
+              <!-- <image src="/static/images/vip.svg"></image> -->
+
+              <image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/vipZpq.png"></image>
+
+            </view>
+            <view class="userLevelTxt">
+              {{userInfo.userLevelName}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <image class="setButton" src="/static/images/setButton.svg" bindtap="setting"></image>
+  </view>
+  <!-- 我的钱包、订单、卡券 -->
+  <view class="myFunction">
+    <view class="my" bindtap="navToMyWallet">
+      <image class="myFunctionPhoto" src="/static/images/myWallet.png"></image>
+      <view class="myFunctionTitle">我的钱包</view>
+    </view>
+    <view class="my" bindtap="navToMyOrder">
+      <image class="myFunctionPhoto" src="/static/images/myOrder.png"></image>
+      <view class="myFunctionTitle">我的订单</view>
+    </view>
+    <view class="my" bindtap="navToMyCoupon">
+      <image class="myFunctionPhoto" src="/static/images/myCard.png"></image>
+      <view class="myFunctionTitle">我的卡券</view>
+    </view>
+  </view>
+  <!-- 功能栏 -->
+  <view class="functionBar" 
+    wx:if="{{userInfo.userLevelId != 2 || userInfo.interestSurvey != 1}}" bindtap="navTomembershipCard">
+    <view class="left">
+      <image class="icon" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/vip3x.png"></image>
+      <view class="title">会员卡</view>
+    </view>
+    <view class="right">
+      <view class="tip">超值！10元购365包纸巾</view>
+      <image class="rightArrow" src="/static/images/rightArrow.svg"></image>
+    </view>
+  </view>
+  <view class="functionBar" bindtap="getrecord">
+    <view class="left">
+      <image class="icon" src="/static/images/tissue.svg"></image>
+      <view class="title">我的纸巾</view>
+    </view>
+    <view class="right">
+      <view class="tip">剩余{{userTissueNumber}}包</view>
+      <image class="rightArrow" src="/static/images/rightArrow.svg"></image>
+    </view>
+  </view>
+  <view class="functionBar" bindtap="navToMessage">
+    <view class="left">
+      <image class="icon" src="/static/images/message.svg"></image>
+      <view class="title">消息中心</view>
+    </view>
+    <view class="right">
+      <view class="numberTip" wx:if="{{messageNumber > 0 && messageNumber <= 99 }}">{{messageNumber}}</view>
+      <view class="numberTip" wx:elif="{{messageNumber > 99 }}">99+</view>
+      <image class="rightArrow" src="/static/images/rightArrow.svg"></image>
+    </view>
+  </view>
+  <view class="functionBar" bindtap="navToAbout">
+    <view class="left">
+      <image class="icon" src="/static/images/about.svg"></image>
+      <view class="title">关于我们</view>
+    </view>
+    <view class="right">
+      <view class="tip"></view>
+      <image class="rightArrow" src="/static/images/rightArrow.svg"></image>
+    </view>
+  </view>
+  <!-- 宣传栏 -->
+  <image src="{{image}}" class="bulletinBoard"></image>
+
+</view>

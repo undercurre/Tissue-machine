@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdAdvertTypeDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.NAME,
+        T.IS_DELETE
+        FROM AD_ADVERT_TYPE T
+        WHERE 1=1
+        AND T.IS_DELETE = 0
+        <if test="params.name != null and params.name.trim() != ''">
+            AND T.NAME LIKE '%${params.name}%'
+        </if>
+    </sql>
+
+    <select id="selectAdAdvertTypePage" resultType="com.platform.modules.ad.entity.AdAdvertTypeEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdAdvertTypeEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="selectAdvertName" resultType="com.platform.modules.vo.AdAdvertTypeVo">
+        SELECT
+            T.NAME
+        FROM AD_ADVERT_ADVERT_TYPE A
+        LEFT JOIN AD_ADVERT_TYPE T ON T.ID = A.ADVERT_TYPE_ID
+        LEFT JOIN AD_ADVERT AA ON AA.ID = A.ADVERT_ID
+        WHERE AA.ID = #{id}
+    </select>
+</mapper>

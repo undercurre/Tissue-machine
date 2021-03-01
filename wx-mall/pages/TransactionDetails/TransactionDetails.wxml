@@ -1,0 +1,24 @@
+<!--pages/TransactionDetails/TransactionDetails.wxml-->
+<view class="transaction">
+  <view class="transaction_item" wx:for="{{transactionList}}" wx:key="orderSn">
+    <view class="transaction_top">
+      <view class="transaction_num">订单编号：{{item.orderSn}}</view>
+      <view class="transaction_price" wx:if="{{item.orderPayType ===1}}">-￥{{item.actualPrice}}</view>
+      <view class="transaction_price" wx:if="{{item.orderPayType ===2}}">-￥{{item.comsumePrice}}</view>
+    </view>
+    <view class="transaction_bottom">
+      <view class="transaction_time">{{item.payTime}}</view>
+      <view wx:if="{{item.orderPayType=='1'}}">
+        <view class="transaction_mode_a">微信支付</view>
+      </view>
+      <view wx:elif="{{item.orderPayType=='2'}}">
+        <view class="transaction_mode_b">消费金抵扣</view>
+      </view>
+    </view>
+  </view>
+  <view  class="blankContent" wx:if="{{transactionList.length ==0}}">
+  <view>
+    <image class="blankContentImage" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/myWalletEmpty%403x.png"></image>
+  </view>
+</view>
+</view>

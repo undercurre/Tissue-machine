@@ -1,0 +1,31 @@
+<view class="userinfo">
+	<image class="userinfo-avatar" src="{{userInfo.headImgUrl}}" background-size="cover"></image>
+</view>
+
+<view>
+	<view>
+		<form bindsubmit="modifyInfo">
+			<form bindsubmit="bindGetPassCode">
+				<view class="login">
+					<view class="frame">
+						<view>昵称:</view>
+						<view class="line">
+							<input placeholder-class="phcolor" class="tui-input" name="nickname" placeholder="昵称"
+								bindinput="bindInputNickname" value="{{userInfo.nickname}}" />
+						</view>
+					</view>
+					<view class="frame">
+						<view>用户名:</view>
+						<view class="line">
+							<input placeholder-class="phcolor" class="tui-input" name="userName" placeholder="用户名"
+								bindinput="bindInputuserName" value="{{userInfo.userName}}" />
+						</view>
+					</view>
+				</view>
+			</form>
+			<view class="submit">
+				<button formType="submit">保存</button>
+			</view>
+		</form>
+	</view>
+</view>

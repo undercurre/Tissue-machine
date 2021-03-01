@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdChatRecordDao">
+
+    <sql id="selectSql">
+        SELECT
+         T.OPEN_ID,
+         T.WORKER_ID,
+         ANY_VALUE(U.NICKNAME) AS USER_NAME,
+         ANY_VALUE(W.NICKNAME) AS WORKER_NAME,
+         MAX(T.CREATED_TIME) AS END_TIME
+        FROM
+        AD_CHAT_RECORD T
+        LEFT JOIN AD_CHAT_WORKER W ON W.WORKER_ID = T.WORKER_ID
+        LEFT JOIN MALL_USER U ON U.OPEN_ID = T.OPEN_ID
+        WHERE 1 = 1
+        <if test="params.userName != null and params.userName.trim() != ''">
+            AND U.NICKNAME LIKE '%${params.userName}%'
+        </if>
+        <if test="params.workerName != null and params.workerName.trim() != ''">
+            AND W.NICKNAME LIKE '%${params.workerName}%'
+        </if>
+        GROUP BY T.OPEN_ID,T.WORKER_ID
+    </sql>
+
+    <select id="selectAdChatRecordPage" resultType="com.platform.modules.ad.entity.AdChatRecordEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdChatRecordEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

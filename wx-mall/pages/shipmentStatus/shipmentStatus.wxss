@@ -1,0 +1,54 @@
+.top {
+  width: 100%;
+}
+
+.image {
+  width: 750rpx;
+}
+
+.tipSuccess {
+  color: #29C78F;
+  font-size: 33rpx;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 60rpx 0;
+}
+
+.tipFail {
+  margin: 60rpx 0;
+}
+
+.tipFailTitle {
+  color: #FF0000;
+  font-size: 33rpx;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.tipFailDetail {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.button {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.buttonLeft {
+  background-color: #082F40;
+  color: #fff;
+  padding: 20rpx 55rpx;
+  border-radius: 15rpx;
+}
+
+.buttonRight {
+  background-color: #fff;
+  color: #082F40;
+  border: 1rpx solid #082F40;
+  padding: 20rpx 55rpx;
+  border-radius: 15rpx;
+}

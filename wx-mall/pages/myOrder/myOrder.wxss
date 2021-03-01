@@ -1,0 +1,148 @@
+/* pages/myOrder/myOrder.wxss */
+page {
+  margin: 0 2%;
+  width: 96%;
+  background-color: #EEEEEE;
+}
+
+.frame1 {
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx auto;
+  border-radius: 1rpx;
+  /* padding: 10rpx; */
+  height: 315rpx;
+  width: 690rpx;
+  background-image: url('https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/order_background.png');
+  background-size: 690rpx 360rpx;
+  background-repeat: no-repeat;
+}
+.frame2 {
+  display: flex;
+  flex-direction: column;
+  margin: 20rpx auto;
+  border-radius: 1rpx;
+  /* padding: 10rpx; */
+  height: 360rpx;
+  width: 690rpx;
+  background-image: url('https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/order_background.png');
+  background-size: 690rpx 360rpx;
+  background-repeat: no-repeat;
+}
+
+/* 上部：订单状态、支付方式 */
+.top {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1rpx solid #EEEEEE;
+  /* padding: 10rpx 0 16rpx; 
+  margin: 10rpx 0;原先的代码 一下为修改*/
+  padding: 16rpx 0 28rpx;
+  margin-bottom: 11rpx;
+  /* 16rpx-5rpx,因为上下间距不坍塌，订单号上边距5rpx */
+}
+
+.top .finishedTitle {
+  font-size: 26rpx;
+  color: #29C78F;
+}
+
+.top .orderStatus .finishedOrFail .FlexBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.paymentMethod {
+  color: #141616;
+  font-weight: bold;
+  margin-right: 20rpx;
+  font-size: 26rpx;
+}
+
+.orderStatus {
+  color: #29C78F;
+}
+
+.finishedOrFail {
+  display: flex;
+  margin-left: 20rpx;
+}
+
+.finishedLogo {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 10rpx;
+  margin-top: 5rpx;
+}
+
+.failLogo {
+  width: 30rpx;
+  height: 35rpx;
+  margin-right: 10rpx;
+  margin-top: 5rpx;
+}
+
+.failTitle {
+  color: #FF0000;
+}
+
+/* 中部：订单号、消费地点、消费时间、购买商品 */
+.middle {
+  display: flex;
+  flex-direction: column;
+  color: #666666;
+  border-bottom: 1rpx solid #EEEEEE;
+  padding-bottom: 14rpx;
+}
+
+.subFrame {
+  display: flex;
+  justify-content: space-between;
+  margin: 5rpx 0;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.subFrame :first-child {
+  margin-left: 30rpx;
+}
+
+.subFrame :last-child {
+  margin-right: 30rpx;
+}
+
+/* 下部：（已退款）、删除按钮 */
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  margin: 20rpx 0;
+  /* 原先为22rpx */
+}
+
+.refunded {
+  color: #FF9700;
+  font-size: 26rpx;
+  height: 36rpx;
+}
+
+.delete {
+  width: 26rpx;
+  height: 30rpx;
+}
+
+.deleteButton {
+  margin-right: 20rpx;
+}
+
+.blankContentImage {
+  width: 480rpx;
+  height: 270rpx;
+}
+/* 消息为空 */
+.blankContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50%;
+}

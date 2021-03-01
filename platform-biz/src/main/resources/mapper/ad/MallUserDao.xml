@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.MallUserDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.USER_NAME,
+        T.PASSWORD,
+        T.GENDER,
+        T.BIRTHDAY,
+        T.REGISTER_TIME,
+        T.LAST_LOGIN_TIME,
+        T.LAST_LOGIN_IP,
+        T.USER_LEVEL_ID,
+        T.NICKNAME,
+        T.MOBILE,
+        T.REGISTER_IP,
+        T.HEAD_IMG_URL,
+        T.ALI_USER_ID,
+        T.OPEN_ID,
+        T.QQ_OPEN_ID,
+        T.MP_OPEN_ID,
+        T.UNION_ID,
+        T.SUBSCRIBE,
+        T.SUBSCRIBE_TIME,
+        T.SIGN_ALL_INTEGRAL,
+        T.SIGN_USED_INTEGRAL,
+        T.BALANCE,
+        T.INTEREST_SURVEY,
+        T.TISSUE_COUNT,
+        L.NAME AS USER_LEVEL_NAME
+        FROM MALL_USER T
+        LEFT JOIN MALL_USER_LEVEL L ON L.ID = T.USER_LEVEL_ID
+        WHERE 1=1
+        <if test="params.userName != null and params.userName.trim() != ''">
+            AND T.USER_NAME LIKE '%${params.userName}%'
+        </if>
+        <if test="params.gender != null and params.gender.trim() != ''">
+            AND T.GENDER = #{params.gender}
+        </if>
+        <if test="params.mobile != null and params.mobile.trim() != ''">
+            AND T.MOBILE = #{params.mobile}
+        </if>
+    </sql>
+
+    <select id="selectMallUserPage" resultType="com.platform.modules.ad.entity.MallUserEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.MallUserEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <sql id="selectMallUser">
+        SELECT DISTINCT
+        D.USER_ID,
+        T.ID,
+        T.USER_NAME,
+        T. PASSWORD,
+        T.GENDER,
+        T.BIRTHDAY,
+        T.REGISTER_TIME,
+        T.LAST_LOGIN_TIME,
+        T.LAST_LOGIN_IP,
+        T.USER_LEVEL_ID,
+        T.NICKNAME,
+        T.MOBILE,
+        T.REGISTER_IP,
+        T.HEAD_IMG_URL,
+        T.ALI_USER_ID,
+        T.OPEN_ID,
+        T.QQ_OPEN_ID,
+        T.MP_OPEN_ID,
+        T.UNION_ID,
+        T.SUBSCRIBE,
+        T.SUBSCRIBE_TIME,
+        T.SIGN_ALL_INTEGRAL,
+        T.SIGN_USED_INTEGRAL,
+        T.BALANCE,
+        T.INTEREST_SURVEY,
+        T.TISSUE_COUNT,
+        L. NAME AS USER_LEVEL_NAME
+        FROM
+        (
+        SELECT
+        MACHINE_ID,
+        FROM_TYPE,
+        USER_ID
+        FROM
+        AD_MACHINE_AGENT
+        ) AS D
+        LEFT JOIN MALL_USER T ON T.ID = D.USER_ID
+        LEFT JOIN MALL_USER_LEVEL L ON L.ID = T.USER_LEVEL_ID
+        WHERE 1=1
+        <if test="params.machineIds != null">
+            AND D.MACHINE_ID in
+            <foreach item="item" collection="params.machineIds" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+        <if test="params.userName != null and params.userName.trim() != ''">
+            AND T.USER_NAME LIKE '%${params.userName}%'
+        </if>
+        <if test="params.gender != null and params.gender.trim() != ''">
+            AND T.GENDER = #{params.gender}
+        </if>
+        <if test="params.mobile != null and params.mobile.trim() != ''">
+            AND T.MOBILE = #{params.mobile}
+        </if>
+    </sql>
+
+    <select id="selectMallUserByAgent" resultType="com.platform.modules.ad.entity.MallUserEntity">
+        <include refid="selectMallUser"/>
+    </select>
+
+    <select id="selectMallUserPageByAgent" resultType="com.platform.modules.ad.entity.MallUserEntity">
+        <include refid="selectMallUser"/>
+    </select>
+
+    <select id="queryRegisterTotal" resultType="integer">
+        SELECT COUNT(*) FROM MALL_USER
+        WHERE 1 = 1
+        <if test="type == 1">
+            AND YEAR(`REGISTER_TIME`) = YEAR(NOW())
+        </if>
+        <if test="type == 2">
+            AND QUARTER(`REGISTER_TIME`) = QUARTER(now())
+        </if>
+        <if test="type == 3">
+            AND DATE_FORMAT(`REGISTER_TIME`, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+        </if>
+        <if test="type == 4">
+            AND YEARWEEK(DATE_FORMAT(`REGISTER_TIME`,'%Y-%m-%d')) = YEARWEEK(NOW());
+        </if>
+        <if test="type == 5">
+            AND TO_DAYS(`REGISTER_TIME`) = TO_DAYS(NOW())
+        </if>
+    </select>
+
+    <select id="groupByUserInCity" resultType="com.platform.modules.vo.RegionSortVo">
+        SELECT
+        T.CITY AS REGION_NAME,
+        COUNT(1) AS USER_NUMBER
+        FROM AD_TISSUE_MACHINE T
+        LEFT JOIN AD_MACHINE_AGENT A ON T.ID = A.MACHINE_ID
+        WHERE A.FROM_TYPE = 0
+        GROUP BY T.CITY
+    </select>
+
+    <select id="groupByUserInDistrict" resultType="com.platform.modules.vo.RegionSortVo">
+        SELECT
+        T.DISTRICT AS REGION_NAME,
+        COUNT(1) AS USER_NUMBER
+        FROM AD_TISSUE_MACHINE T
+        LEFT JOIN AD_MACHINE_AGENT A ON T.ID = A.MACHINE_ID
+        WHERE A.FROM_TYPE = 0
+        GROUP BY T.DISTRICT
+    </select>
+
+</mapper>

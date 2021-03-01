@@ -1,0 +1,181 @@
+{
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": false,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": false,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": true,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": []
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.11.1",
+  "appid": "wx8531bbbbe17790a0",
+  "projectname": "%E5%BE%AE%E5%90%8C%E5%95%86%E5%9F%8E%E5%95%86%E4%B8%9A%E7%89%88-%E5%88%86%E9%94%80%E7%89%88",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "list": []
+    },
+    "conversation": {
+      "list": []
+    },
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "扫码结果",
+          "pathName": "pages/result/result",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pay",
+          "pathName": "pages/pay/pay",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/inShipment/inShipment",
+          "pathName": "pages/inShipment/inShipment",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "消息中心",
+          "pathName": "pages/ucenter/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "首页",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "machineDetail",
+          "pathName": "pages/machineDetail/machineDetail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "result",
+          "pathName": "pages/result/result",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "result",
+          "pathName": "pages/result/result",
+          "query": "sn=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/myOrder/myOrder",
+          "pathName": "pages/myOrder/myOrder",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "广告浏览",
+          "pathName": "pages/adScan/adScan",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "问题反馈",
+          "pathName": "pages/problemFeedback/problemFeedback",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/machineErrorStatus/machineErrorStatus",
+          "pathName": "pages/machineErrorStatus/machineErrorStatus",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的钱包",
+          "pathName": "pages/myWallet/myWallet",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "消息",
+          "pathName": "pages/ucenter/message/message",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "消息2",
+          "pathName": "pages/ucenter/message2/message2",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "出货中",
+          "pathName": "pages/inShipment/inShipment",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

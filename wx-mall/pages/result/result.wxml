@@ -1,0 +1,173 @@
+<!-- 顶部 不同机型：1px={{rate}}rpx，rpx可让系统自适应-->
+<view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+	<view class="status" style="height:{{statusHeight}}px"></view>
+	<view class="comment" style="height: {{commentHeight}}px">
+		<view class="FlexBox"
+			style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+			<view class="backButton" bindtap="backIndex">
+				<image src="/static/images/backButton.svg" class="backButtonImage"></image>
+			</view>
+			<view class="mainTitle" style="margin-left: {{textLeft}}px;">便民纸巾</view>
+		</view>
+	</view>
+</view>
+<!-- 背景图标“文明佛山” -->
+<view class="logoView" wx:if="{{showHeight}}" style="top:{{(topHeight+5)}}px">
+	<view>
+		<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/logo3xZpq.png" class="logo"></image>
+	</view>
+</view>
+
+<!-- 信息栏 -->
+<view class="{{status == 0  ? 'infoFrameA' : 'infoFrameB'}}" wx:if="{{showHeight}}" style="top:{{(infoFrameTop)}}px">
+	<!-- “免费纸巾”、“购买纸巾” -->
+	<view class="tissueStatus">
+		<view class="buttonA" bindtap="statusA">
+			<view class="{{status == 0  ? 'buttonAMaintitleA' : 'buttonAMaintitleB'}}">免费纸巾</view>
+		</view>
+		<view class="buttonB" bindtap="statusB">
+			<view class="{{status == 0  ? 'buttonBMaintitleA' : 'buttonBMaintitleB'}}">购买纸巾</view>
+		</view>
+		<view class="buttonASubTitle" style="top:{{fuLiTop}}px">
+			<view class="buttonASubTitleDetail">限时福利</view>
+		</view>
+	</view>
+	<!-- 设备剩余xx包纸巾 -->
+	<view class="tipSurplus">包纸巾
+		<view class="num">{{machineInfo.tissueNumber}}</view>
+		设备剩余</view>
+	<!-- 纸巾图片 -->
+	<view class="FlexBox">
+		<swiper autoplay="auto" interval="5000" duration="500" current="{{swiperCurrent}}" indicator-dots="true"
+			class="swiperClass">
+			<block wx:for="{{goodsBanner}}" wx:key="unique">
+				<swiper-item data-id="{{item.id}}">
+					<image class="tissueImage" src="{{item.imageUrl}}" mode="aspectFill"></image>
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<!-- 提示 -->
+	<view>
+		<view wx:if="{{status == 0}}" class="tipA">活动期间用户可每天免费领取纸巾</view>
+		<view wx:if="{{status == 1}}" class="tipB">{{machineGoodsInfo[0].price}}元/包</view>
+	</view>
+	<!-- 状态提醒 -->
+	<view>
+		<view wx:if="{{status == 0}}" class="statusRemindA">
+			今日剩余可领取({{userInfo.userRemainFreeToday}}/{{userInfo.remainFreeToday}})</view>
+		<view wx:if="{{status == 1}}" class="statusRemindB">
+			今日剩余购买({{userInfo.userRemainBuyToday}}/{{userInfo.remainBuyToday}})</view>
+	</view>
+	<!-- 按钮 -->
+	<view>
+		<view wx:if="{{status == 0}} ">
+			<view wx:if="{{(status == 0 &&getStatus == 1) && (userInfo.userRemainFreeToday !=0) && (userInfo.tissueCount != 0) }}" class="submitButtonA"
+				bindtap="goToGet">
+				免费领取
+			</view>
+			<view wx:if="{{(status == 0 && userInfo.userRemainFreeToday == 0) && (userInfo.tissueCount != 0)}}"
+				class="submitButtonC">
+				已领取
+			</view>
+			<view wx:if="{{(status == 0 && userInfo.tissueCount == 0) && (userInfo.userLevelId === '2')}}"
+				class="submitButtonD">
+				纸巾余额不足
+			</view>
+			<view wx:if="{{(status == 0 && userInfo.tissueCount == 0) && (userInfo.userLevelId === '1')}}" class="submitButtonA"
+				bindtap="goToGet">
+				免费领取
+			</view>
+		</view>
+		<view wx:if="{{status == 1 }}">
+			<view wx:if="{{ userInfo.userRemainBuyToday != 0 }}" class="submitButtonB" bindtap="showPop">
+				立即购买
+			</view>
+			<view wx:if="{{ userInfo.userRemainBuyToday == 0 }}" class="submitButtonC">
+				额度已用完
+			</view>
+		</view>
+	</view>
+</view>
+
+<view wx:if="{{popShow}}" class="pop">
+	<!-- <view class="Bao">包</view> -->
+	<view class="cover"></view>
+	<view class="content">
+		<view class="message">
+			<view class="popTitle">
+				<text class="purchaseCount">购买数量</text>
+				<text class="leftToBuy">（今日剩余购买{{userInfo.userRemainBuyToday}}/{{userInfo.remainBuyToday}}）</text>
+				<image bindtap="closeWin" src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/close3xZpq.png" mode="scaleToFill" class="noShow"></image>
+			</view>
+			<numberBox class="numberBox" iconsize="38" height="88" width="88" data-goods-id="{{item.id}}"
+				data-item-index="{{index}}" value="{{ number }}" step="1" max="{{userInfo.userRemainBuyToday}}"
+				bindchange="changeNumber"></numberBox>
+				<view class="line"></view>
+				<view class="chooseTxt">选择消费券</view>
+				<view class="chooseVolume">
+					<view class="left">
+					<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/volume3xZpq.png" class="img" mode="scaleToFill"></image>
+					<text class="txt">消费券</text>
+				</view>
+				<view class="right" bindtap="gotoChoose">
+					<view class="hasVolume" wx:if="{{hasSelect === 0}}">
+						{{volume}}张可用
+					</view>
+					<view wx:else class="hasChoose">
+            -{{sumSubPrice}}
+					</view>
+					<image class="go" mode="scaleToFill" src="/static/images/rightArrow.svg"></image>
+					</view>
+				</view>
+				<view class="line"></view>
+				<view class="payWayTxt">支付方式</view>
+				<view class="payBalance">
+					<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/coin3xZpq.png" mode="scaleToFill" class="img"></image>
+					<text class="balanceTxt">消费金抵扣</text>
+					<text class="leftOfBalance">剩余（{{userInfo.balance}}）</text>
+					<text class="toDeduction">-{{useBalance}}</text>
+				</view>
+				<view class="weChatPay">
+					<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/paywechat3xZpq.png" mode="scaleToFill" class="img"></image>
+					<text class="txt">微信支付</text>
+				</view>
+				<view class="realPay">
+						 <view class="money">
+                {{actualPrice}}
+						 </view>
+						 <view class="txt">
+							支付金额（元）
+						 </view>
+				</view>
+			<view class="popButtonWeChat" bindtap="goToSubmitOrder"
+			wx:if="{{wechat === true}}"
+			>微信支付</view>
+			<view class="popButtonComfirm" bindtap="goToSubmitOrder"
+			wx:else
+			>确认支付</view>
+		</view>
+		<!-- <view class="close" bindtap="showPop">
+			<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/pop_close.png"></image>
+		</view> -->
+	</view>
+</view>
+
+<!-- 优惠券弹窗 -->
+<!-- <view wx:if="{{showSelect === 1}}" class="toSelect">
+	<view class="top" wx:if="{{showHeight}}" style="height:{{topHeight}}px">
+	<view class="status" style="height:{{statusHeight}}px"></view>
+	<view class="comment" style="height: {{commentHeight}}px">
+		<view class="FlexBox"
+			style="margin-right: {{buttonboundRight}}px;width: {{FlexBoxWidth}}px;height: {{buttonboundHeight}}px;margin-top:{{bbTopX}}px">
+			<view class="backButton">
+				<image src="https://admachine-1254098248.cos.ap-guangzhou.myqcloud.com/Gotoselect3xZpq.png" style="width:18rpx;height:34rpx"
+				mode="scaleToFill"
+				></image>
+				<text style="color:black;font-size:30rpx"></text>
+			</view>
+			<view class="mainTitle" style="margin-left: {{textLeft}}px;">我的卡卷</view>
+		</view>
+	</view>
+</view>
+</view> -->

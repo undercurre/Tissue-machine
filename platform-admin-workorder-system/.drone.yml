@@ -1,0 +1,86 @@
+kind: pipeline
+type: docker
+name: publish
+
+steps:
+  - name: code-analysis
+    image: aosapps/drone-sonar-plugin
+    settings:
+      sonar_host: http://sonar.xinglian.info
+      sonar_token: f6ff9936fc2763b0d946df5c1f653e8caf1d5229
+    when:
+      event: [pull_request]
+
+  - name: report-code-analysis
+    image: curlimages/curl
+    commands:
+      - curl -s -X POST "http://gitea-bot.xinglian.info/sonar/${DRONE_REPO}/${DRONE_COMMIT_SHA}/${DRONE_BUILD_NUMBER}"
+    when:
+      event: [pull_request]
+    depends_on:
+      - code-analysis
+
+  - name: restore-cache
+    image: appleboy/drone-sftp-cache
+    settings:
+      server: ftp.xinglian.info
+      port: 2222
+      username: qunzhi
+      password: qunzhi
+      path: /cache
+      ignore_branch: true
+      restore: true
+      mount:
+        - node_modules
+
+  - name: install
+    image: node:alpine
+    commands:
+      - npm install --registry https://registry.npm.taobao.org
+    when:
+      event: [pull_request]
+    depends_on:
+      - restore-cache
+
+  - name: rebuild-cache
+    image: appleboy/drone-sftp-cache
+    settings:
+      server: ftp.xinglian.info
+      port: 2222
+      username: qunzhi
+      password: qunzhi
+      path: /cache
+      ignore_branch: true
+      rebuild: true
+      mount:
+        - node_modules
+    when:
+      event: [pull_request]
+    depends_on:
+      - install
+
+  - name: build
+    image: node:alpine
+    commands:
+      - npm run build
+    depends_on:
+      - install
+
+  - name: upload
+    image: cschlosser/drone-ftps
+    environment:
+      FTP_USERNAME: qunzhi
+      FTP_PASSWORD: qunzhi
+      PLUGIN_HOSTNAME: ftp.xinglian.info:21
+      PLUGIN_SECURE: false
+      PLUGIN_SRC_DIR: /dist
+      PLUGIN_DEST_DIR: /adMachine-wx
+    when:
+      event: [push]
+    depends_on:
+      - build
+
+trigger:  # 只在以下分支触发
+  branch:
+    - dev
+    - ci

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.ad.dao.AdScanDao">
+
+    <sql id="selectSql">
+        SELECT
+        T.ID,
+        T.IMAGE_URL,
+        T.DURATION,
+        T.CREATE_TIME,
+        T.AVAIL
+        FROM AD_SCAN T
+        WHERE 1=1
+        <if test="params.avail != null and params.avail.trim() != ''">
+            AND T.AVAIL = #{params.avail}
+        </if>
+    </sql>
+
+    <select id="selectAdScanPage" resultType="com.platform.modules.ad.entity.AdScanEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.ad.entity.AdScanEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>
